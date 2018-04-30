@@ -188,17 +188,17 @@
     </xsl:template>
     
     <xsl:template match="prop">
-        <map>
+        <!--<map>
           <xsl:apply-templates select="." mode="as-string">
               <xsl:with-param name="key" select="@class"/>
           </xsl:apply-templates>
-        </map>
-        <!--<map>
+        </map>-->
+        <map>
             <xsl:apply-templates mode="as-string" select="@*"/>
             <xsl:apply-templates mode="as-string" select=".">
                 <xsl:with-param name="key">value</xsl:with-param>
             </xsl:apply-templates>
-        </map>-->
+        </map>
     </xsl:template>
     
     <xsl:template match="part">

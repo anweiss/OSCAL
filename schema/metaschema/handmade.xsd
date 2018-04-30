@@ -72,6 +72,7 @@
   <xs:element name="prop">
     <xs:complexType mixed="true">
       <xs:attribute name="class" use="required" type="xs:NCName"/>
+      <xs:attribute name="id"                   type="xs:ID"/>
     </xs:complexType>
   </xs:element>
   
