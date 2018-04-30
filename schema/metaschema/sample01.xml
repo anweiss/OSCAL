@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Validates with ../xml/oscal-catalog.xsd and with sample -->
-<control xmlns="http://csrc.nist.gov/ns/oscal/1.0">
+<control xmlns="http://csrc.nist.gov/ns/oscal/1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://csrc.nist.gov/ns/oscal/1.0 handmade.xsd">
+    <title>Sample Control, with Title</title>
     <prop class="prop1">Property 1</prop>
     <prop class="prop2">Property 2</prop>
     <param id="param3" class="param3">

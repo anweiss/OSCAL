@@ -4,6 +4,7 @@
   <xs:element name="control">
     <xs:complexType>
       <xs:sequence>
+        <xs:element ref="oscal:title"/>
         <xs:element minOccurs="0" maxOccurs="unbounded" ref="oscal:prop"/>
         <xs:element minOccurs="0" maxOccurs="unbounded" ref="oscal:param"/>
         <xs:element minOccurs="0" maxOccurs="unbounded" ref="oscal:part"/>
@@ -58,6 +59,10 @@
         <xs:element ref="oscal:citation"/>
       </xs:sequence>
     </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="title">
+    <xs:complexType mixed="true"/>
   </xs:element>
   
   <xs:element name="citation">

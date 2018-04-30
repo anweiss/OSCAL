@@ -117,7 +117,7 @@
             </xsl:if>
             
             <xsl:apply-templates mode="as-string" select="@*"/>
-            
+            <xsl:apply-templates select="title"/>
             <xsl:call-template name="elems-arrayed">
                 <xsl:with-param name="elems" select="prop"/>
             </xsl:call-template>
@@ -204,6 +204,7 @@
     <xsl:template match="part">
         <map>
             <xsl:apply-templates mode="as-string" select="@*"/>
+            <xsl:apply-templates select="title"/>
             <xsl:call-template name="elems-arrayed">
                 <xsl:with-param name="elems" select="param | prop"/>
             </xsl:call-template>
@@ -220,6 +221,10 @@
             <xsl:apply-templates mode="escaped" select=".[matches(.,'\S')]"/>
         </map>
     </xsl:template>
+    
+    <xsl:template xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        match="@xsi:*" mode="#all" priority="99"/>
+    
     
     
    <xsl:key name="parameters" match="param" use="@id"/>

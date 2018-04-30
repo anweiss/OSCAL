@@ -28,10 +28,9 @@
     <block      named="title"/>
     <components named="prop"/>
     <components named="param"/>
-    <prose/>
     <components named="part"/>
     <components named="link"/>
-    <block      named="references"/>
+    <block      named="references" required="no"/>
   </define-component>
 
   <define-block name="title">
