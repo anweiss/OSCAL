@@ -119,7 +119,11 @@
             <xsl:apply-templates mode="as-string" select="@*"/>
             
             <xsl:call-template name="elems-arrayed">
-                <xsl:with-param name="elems" select="param | prop | part | link | subcontrol"/>
+                <xsl:with-param name="elems" select="prop"/>
+            </xsl:call-template>
+            <xsl:call-template name="params-mapped"/>
+            <xsl:call-template name="elems-arrayed">
+                <xsl:with-param name="elems" select="part | link | subcontrol"/>
             </xsl:call-template>
             <!--<xsl:apply-templates/>-->
         </map>
@@ -127,14 +131,30 @@
     
     <xsl:template name="elems-arrayed">
         <xsl:param name="elems" as="node()*" select="*"/>
-            <xsl:for-each-group select="$elems" group-by="local-name()">
-                <xsl:variable name="new-key">
-                    <xsl:apply-templates mode="cast-key" select="current-grouping-key()"/>
-                </xsl:variable>
-                <array key="{$new-key}">
-                    <xsl:apply-templates select="current-group()"/>
-                </array>
-            </xsl:for-each-group>
+        <xsl:for-each-group select="$elems" group-by="local-name()">
+            <xsl:variable name="new-key">
+                <xsl:apply-templates mode="cast-key" select="current-grouping-key()"/>
+            </xsl:variable>
+            <array key="{$new-key}">
+                <xsl:apply-templates select="current-group()"/>
+            </array>
+        </xsl:for-each-group>
+    </xsl:template>
+    
+<!-- Experimental   -->
+    <xsl:template name="params-mapped">
+        <xsl:for-each-group select="param" group-by="local-name()">
+            <map key="params">
+                <xsl:apply-templates select="current-group()"/>
+            </map>
+            
+            <!--<xsl:variable name="new-key">
+                <xsl:apply-templates mode="cast-key" select="current-grouping-key()"/>
+            </xsl:variable>
+            <array key="{$new-key}">
+                <xsl:apply-templates select="current-group()"/>
+            </array>-->
+        </xsl:for-each-group>
     </xsl:template>
     
     <xsl:template mode="cast-key" match="." expand-text="true">{.}s</xsl:template>
@@ -157,10 +177,14 @@
     </xsl:template>
     
     <xsl:template match="param">
-        <map>
-            <xsl:apply-templates mode="as-string" select="@*"/>
+        <map key="{@id}">
+            <xsl:apply-templates mode="as-string" select="@* except @id"/>
             <xsl:apply-templates mode="as-string" select="*"/>
         </map>
+        <!--<map>
+            <xsl:apply-templates mode="as-string" select="@*"/>
+            <xsl:apply-templates mode="as-string" select="*"/>
+        </map>-->
     </xsl:template>
     
     <xsl:template match="prop">
