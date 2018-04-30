@@ -35,6 +35,12 @@
         <p>Complex parts may have props and parts of their own.</p>
         <part class="part7-1"><p>Subpart prose.</p></part>
     </part>
+    <part class="part8repeats">
+        <p>Uhoh</p>
+    </part>
+    <part class="part8repeats">
+        <p>Uhoh</p>
+    </part>
     <link rel="reference" href="#somelink">link</link>
     <references>
         <ref>

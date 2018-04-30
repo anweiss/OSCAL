@@ -10,6 +10,7 @@ start =
 component-declaration = element define-component {
        attribute group-as { xsd:NCName },
        attribute name     { xsd:NCName },
+       attribute require {  xsd:NMTOKENS }?,
        attributes,
        text-or-stuff
      }
