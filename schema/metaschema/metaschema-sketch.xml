@@ -1,70 +1,90 @@
+<?xml-model href="metaschema.rnc" type="application/relax-ng-compact-syntax"?>
 <METASCHEMA top="controls">
 <!-- constraints:
-       content models as implicit
+    
+    Target content models will never have substructures or mixing
+      apart from 'prose' and everything it includes (so that is sequestered here)
+    This is achieved by following the pattern (a*, b*, c*),
+      where sequences of 'a' 'b' and 'c' are implicitly grouped
        components always have names and plurals (for implicit wrapping)
-       'element', 'components', 'prose' can mix, but 'prose' may not appear more than in a component definition
+         it implies a sequence of like-named elements that can be mapped into a JSON array w/ key
+       'element', 'components', 'prose' can mix, but 'prose' may not appear more than once in a component definition
        'text' cannot mix except with 'element' inside 'define-mix'
-       'components' and 'mix' both imply implicit grouping (explicit in the JSON)
-       'prose' calls out to (HTML-min) prose
-       -->
+       'prose' calls out to prose, for which we use a small clean HTML analog
+       NB we support no mixed content yet, not even in titles or citations
+         (so no anchors, robust formatting or parameter insertion points are specified)
+    In expression, attributes @class and @id are always permitted on elements or components,
+      and will come for free (require no declaration)
+      
+    Constraints in addition to metaschema.rnc
+      //@name[. = preceding::*/@name] gives only attributes (such as href)
+      empty(//@named[not(. = //@name)]) indicates referential integrity
+      empty(//@named[.=../preceding-sibling::*/@named] ) so groups or elements are not repeated
+         (which foils regular grouping)
+    
+  -->
   
-  <define-component name="control" plural="controls">
-    <element name="title"/>
-    <components name="props"/>
-    <components name="params"/>
+  <define-component name="control" group-as="controls">
+    <element    named="title"/>
+    <components named="prop"/>
+    <components named="param"/>
     <prose/>
-    <components name="parts"/>
-    <components name="links"/>
-    <components name="references"/>
+    <components named="part"/>
+    <components named="link"/>
+    <element    named="references"/>
   </define-component>
 
   <define-element name="title">
     <text/>
   </define-element>
 
-  <define-component name="prop" plural="props">
+  <define-component name="prop" group-as="props">
     <text/>
   </define-component>
 
-  <define-component name="param" plural="params">
-    <components name="descriptions"/>
-    <components name="labels"/>
-    <components name="values"/>
-    <components name="links"/>
+  <define-component name="param" group-as="params">
+    <components named="desc"/>
+    <components named="label"/>
+    <components named="value"/>
+    <components named="link"/>
   </define-component>
   
-  <define-component name="desc" plural="descriptions">
+  <define-component name="desc" group-as="descriptions">
     <text/>
   </define-component>
   
-  <define-component name="label" plural="labels">
+  <define-component name="label" group-as="labels">
     <text/>
   </define-component>
   
-  <define-component name="value" plural="values">
+  <define-component name="value" group-as="values">
     <text/>
   </define-component>
   
-  <define-component name="part" plural="parts">
-    <element name="title" required="no"/>
-    <components name="props"/>
-    <components name="params"/>
+  <define-component name="part" group-as="parts">
+    <element    named="title" required="no"/>
+    <components named="prop"/>
+    <components named="param"/>
     <prose/>
-    <components name="parts"/>
-    <components name="links"/>
+    <components named="part"/>
+    <components named="link"/>
   </define-component>
 
-  <define-component name="links" plural="links">
+  <define-component name="link" group-as="links">
     <attribute name="href" required="no" datatype="anyURI"/>
-    <attribute name="rel" datatype="NCName"/>
+    <attribute name="rel"  required="no" datatype="NCName"/>
     <text/>
   </define-component>
 
-  <define-component name="ref" plural="references">
-    <components name="citations"/>
+  <define-element name="references">
+    <components named="ref"/>
+  </define-element>
+  
+  <define-component name="ref" group-as="references">
+    <components named="citation"/>
   </define-component>
-
-  <define-component name="citation" plural="citations">
+  
+  <define-component name="citation" group-as="citations">
     <attribute name="href" required="no" datatype="anyURI"/>
     <text/>
   </define-component>
