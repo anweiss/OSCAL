@@ -112,6 +112,10 @@
     
     <xsl:template match="control | subcontrol">
         <map>
+            <xsl:if test="empty(parent::*)">
+                <xsl:attribute name="key" select="local-name()"/>
+            </xsl:if>
+            
             <xsl:apply-templates mode="as-string" select="@*"/>
             
             <xsl:call-template name="elems-arrayed">
@@ -132,7 +136,6 @@
                 </array>
             </xsl:for-each-group>
     </xsl:template>
-    
     
     <xsl:template mode="cast-key" match="." expand-text="true">{.}s</xsl:template>
         
@@ -162,11 +165,16 @@
     
     <xsl:template match="prop">
         <map>
+          <xsl:apply-templates select="." mode="as-string">
+              <xsl:with-param name="key" select="@class"/>
+          </xsl:apply-templates>
+        </map>
+        <!--<map>
             <xsl:apply-templates mode="as-string" select="@*"/>
             <xsl:apply-templates mode="as-string" select=".">
                 <xsl:with-param name="key">value</xsl:with-param>
             </xsl:apply-templates>
-        </map>
+        </map>-->
     </xsl:template>
     
     <xsl:template match="part">
