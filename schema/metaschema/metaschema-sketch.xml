@@ -25,18 +25,18 @@
   -->
   
   <define-component name="control" group-as="controls">
-    <element    named="title"/>
+    <block      named="title"/>
     <components named="prop"/>
     <components named="param"/>
     <prose/>
     <components named="part"/>
     <components named="link"/>
-    <element    named="references"/>
+    <block      named="references"/>
   </define-component>
 
-  <define-element name="title">
+  <define-block name="title">
     <text/>
-  </define-element>
+  </define-block>
 
   <define-component name="prop" group-as="props">
     <text/>
@@ -62,7 +62,7 @@
   </define-component>
   
   <define-component name="part" group-as="parts">
-    <element    named="title" required="no"/>
+    <block      named="title" required="no"/>
     <components named="prop"/>
     <components named="param"/>
     <prose/>
@@ -76,9 +76,9 @@
     <text/>
   </define-component>
 
-  <define-element name="references">
+  <define-block name="references">
     <components named="ref"/>
-  </define-element>
+  </define-block>
   
   <define-component name="ref" group-as="references">
     <components named="citation"/>

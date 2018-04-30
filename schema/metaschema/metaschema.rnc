@@ -14,7 +14,7 @@ component-declaration = element define-component {
        text-or-stuff
      }
      
-element-declaration =  element define-element {
+element-declaration =  element define-block {
          attribute name { xsd:NCName },
          attributes,
          text-or-stuff
@@ -37,7 +37,7 @@ component-ref =
 
 prose = element prose { empty } +
 
-element-ref = element element {
+element-ref = element block {
                attribute named    { xsd:NCName },
                attribute required   { 'no' }?, # When not given, assume to be 'yes'
                attribute repeatable { 'yes' }? # When not given, assume to be 'no'
