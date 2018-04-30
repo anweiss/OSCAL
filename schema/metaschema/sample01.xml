@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Validates with ../xml/oscal-catalog.xsd and with sample -->
+<control xmlns="http://csrc.nist.gov/ns/oscal/1.0">
+    <prop class="prop1">Property 1</prop>
+    <prop class="prop2">Property 2</prop>
+    <param id="param3" class="param3">
+        <desc>Parameter 3 description</desc>
+        <label>Parameter 3</label>
+        <value>Parameter value 3</value>
+    </param>
+    <param id="param4">
+        <desc>Parameter 4 description</desc>
+        <label>Parameter 4</label>
+        <value>Parameter value 4</value>
+    </param>
+    <part id="part5" class="part5">
+        <p>Here's some random prose.</p>
+        <ul>
+            <li>LI 1</li>
+            <li>LI 2</li>
+            <li>LI 3</li>
+        </ul>
+        <p>More prose for the heck of it.</p>
+    </part>
+    <part class="part6">
+        <p>Prose in a new part.</p>
+    </part>
+    <part class="part7">
+        <prop class="part7-prop1">Part property value</prop>
+        <p>Complex parts may have props and parts of their own.</p>
+        <part class="part7-1"><p>Subpart prose.</p></part>
+    </part>
+    <link rel="reference" href="#somelink">link</link>
+    <references>
+        <ref>
+            <citation>A citation of some nature</citation>
+        </ref>
+    </references>
+</control>

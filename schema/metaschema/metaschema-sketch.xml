@@ -1,0 +1,72 @@
+<METASCHEMA top="controls">
+<!-- constraints:
+       content models as implicit
+       components always have names and plurals (for implicit wrapping)
+       'element', 'components', 'prose' can mix, but 'prose' may not appear more than in a component definition
+       'text' cannot mix except with 'element' inside 'define-mix'
+       'components' and 'mix' both imply implicit grouping (explicit in the JSON)
+       'prose' calls out to (HTML-min) prose
+       -->
+  
+  <define-component name="control" plural="controls">
+    <element name="title"/>
+    <components name="props"/>
+    <components name="params"/>
+    <prose/>
+    <components name="parts"/>
+    <components name="links"/>
+    <components name="references"/>
+  </define-component>
+
+  <define-element name="title">
+    <text/>
+  </define-element>
+
+  <define-component name="prop" plural="props">
+    <text/>
+  </define-component>
+
+  <define-component name="param" plural="params">
+    <components name="descriptions"/>
+    <components name="labels"/>
+    <components name="values"/>
+    <components name="links"/>
+  </define-component>
+  
+  <define-component name="desc" plural="descriptions">
+    <text/>
+  </define-component>
+  
+  <define-component name="label" plural="labels">
+    <text/>
+  </define-component>
+  
+  <define-component name="value" plural="values">
+    <text/>
+  </define-component>
+  
+  <define-component name="part" plural="parts">
+    <element name="title" required="no"/>
+    <components name="props"/>
+    <components name="params"/>
+    <prose/>
+    <components name="parts"/>
+    <components name="links"/>
+  </define-component>
+
+  <define-component name="links" plural="links">
+    <attribute name="href" required="no" datatype="anyURI"/>
+    <attribute name="rel" datatype="NCName"/>
+    <text/>
+  </define-component>
+
+  <define-component name="ref" plural="references">
+    <components name="citations"/>
+  </define-component>
+
+  <define-component name="citation" plural="citations">
+    <attribute name="href" required="no" datatype="anyURI"/>
+    <text/>
+  </define-component>
+
+</METASCHEMA>
