@@ -1,0 +1,62 @@
+{
+  "capabilities": [
+    {
+      "capabilityName": "",
+      "componentName": "",
+      "configs": [
+        {
+          "id": "",
+          "name": "",
+          "value": "",
+          "enforcement": [
+            {
+              "method": "",
+              "assertion": ""
+            }
+          ]
+        },
+        {
+          "id": "",
+          "name": "",
+          "value": "",
+          "enforcement": [
+            {
+              "method": "",
+              "assertion": ""
+            }
+          ]
+        }
+      ],
+      "information": {
+        "notes": [
+          {
+            "prose": [
+              ""
+            ],
+            "links": [
+              {
+                "text": "",
+                "href": "#",
+                "rel": ""
+              }
+            ]
+          }
+        ],
+        "recommendations": [
+          {
+            "prose": [
+              ""
+            ],
+            "links": [
+              {
+                "text": "",
+                "href": "#",
+                "rel": ""
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

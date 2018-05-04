@@ -1,0 +1,210 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://csrc.nist.gov/ns/oscal/1.0-implementation.json",
+  "$comment": "Implementation Schema",
+  "type": "object",
+  "definitions": {
+    "capability": {
+      "$id": "#/definitions/capability",
+      "type": "object",
+      "properties": {
+        "capabilityName": {
+          "type": "string"
+        },
+        "componentName": {
+          "type": "string"
+        },
+        "configs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/config"
+          }
+        },
+        "information": {
+          "$ref": "#/definitions/information"
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "capabilityName",
+          "componentName",
+          "configs",
+          "information"
+        ]
+      }
+    },
+    "config": {
+      "$id": "#/definitions/config",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "$ref": "#/definitions/configValue"
+        },
+        "enforcement": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/enforcement"
+          }
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "id",
+          "name",
+          "value",
+          "enforcement"
+        ]
+      }
+    },
+    "configValue": {
+      "$id": "#/definitions/configValue",
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        }
+      ]
+    },
+    "enforcement": {
+      "$id": "#/definitions/enforcement",
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string"
+        },
+        "assertion": {
+          "type": "string"
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "method",
+          "assertion"
+        ]
+      }
+    },
+    "information": {
+      "$id": "#/definitions/information",
+      "type": "object",
+      "properties": {
+        "notes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/note"
+          }
+        },
+        "recommendations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/recommendation"
+          }
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "notes",
+          "recommendations"
+        ]
+      }
+    },
+    "note": {
+      "$id": "#/definitions/note",
+      "type": "object",
+      "properties": {
+        "prose": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/prose"
+          }
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/link"
+          }
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "prose",
+          "links"
+        ]
+      }
+    },
+    "prose": {
+      "$id": "#/definitions/prose",
+      "type": "string"
+    },
+    "link": {
+      "$id": "#/definitions/link",
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "href": {
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "rel": {
+          "type": "string"
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "text",
+          "href",
+          "rel"
+        ]
+      }
+    },
+    "recommendation": {
+      "$id": "#/definitions/recommendation",
+      "type": "object",
+      "properties": {
+        "prose": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/prose"
+          }
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/link"
+          }
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "prose",
+          "links"
+        ]
+      }
+    }
+  },
+  "properties": {
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/capability"
+      }
+    }
+  },
+  "propertyNames": {
+    "enum": [
+      "capabilities"
+    ]
+  }
+}
