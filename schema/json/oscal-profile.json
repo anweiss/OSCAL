@@ -311,14 +311,14 @@
           "type": "array",
           "description": "",
           "items": {
-            "$ref": "oscal-core.json#/definitions/prop"
+            "$ref": "http://csrc.nist.gov/ns/oscal/1.0-core.json#/definitions/prop"
           }
         },
         "parts": {
           "type": "array",
           "description": "",
           "items": {
-            "$ref": "oscal-core.json#/definitions/part"
+            "$ref": "http://csrc.nist.gov/ns/oscal/1.0-core.json#/definitions/part"
           }
         }
       },
@@ -351,7 +351,7 @@
     },
     "framework": {
       "description": "",
-      "$ref": "oscal-core.json#/definitions/framework"
+      "$ref": "http://csrc.nist.gov/ns/oscal/1.0-core.json#/definitions/framework"
     }
   },
   "propertyNames": {

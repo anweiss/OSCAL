@@ -1,5 +1,5 @@
 {
   "$schema": "http://json-schema.org/draft-06/schema#",
   "$id": "http://csrc.nist.gov/ns/oscal/1.0-framework.json",
-  "$ref": "oscal-core.json#/definitions/framework"
+  "$ref": "http://csrc.nist.gov/ns/oscal/1.0-core.json#/definitions/framework"
 }
