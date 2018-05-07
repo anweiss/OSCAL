@@ -2,15 +2,16 @@ branches:
   only:
     - master
     - docs
+    - ci
 sudo : required
 services:
   - docker
 
 stages:
   - name: build
-    if: branch = master
+    if: branch IN (master, ci)
   - name: validate
-    if: branch = validate
+    if: branch IN (master, ci)
   - name: build-docs
     if: branch = docs
 
