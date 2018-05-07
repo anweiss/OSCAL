@@ -10,3 +10,4 @@ RUN npm install -g ajv-cli
 COPY --from=build /root/hub /usr/local/bin/hub
 WORKDIR /oscal
 COPY . .
+
