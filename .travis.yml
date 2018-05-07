@@ -4,6 +4,9 @@ branches:
     - docs
     - ci
 sudo : required
+
+language: generic
+
 services:
   - docker
 
