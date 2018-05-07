@@ -11,8 +11,6 @@ services:
   - docker
 
 stages:
-  - name: build
-    if: branch IN (master, ci)
   - name: validate
     if: branch IN (master, ci)
   - name: build-docs
@@ -20,9 +18,8 @@ stages:
 
 jobs:
   include:
-    - stage: build
-      before_install:
-        - docker build -t usnistgov/oscal .
     - stage: validate
+      before_script:
+        - docker build -t usnistgov/oscal:dev .
       script:
-        - docker run usnistgov/oscal /bin/sh -c "xmllint --noout --schema schema/xml/XSD/oscal-profile-interim.xsd examples/FedRAMP/FedRAMP-HIGH-crude.xml"
+        - docker run usnistgov/oscal:dev /bin/sh -c "xmllint --noout --schema schema/xml/XSD/oscal-profile-interim.xsd examples/FedRAMP/FedRAMP-HIGH-crude.xml"
