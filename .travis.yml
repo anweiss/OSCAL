@@ -25,5 +25,7 @@ jobs:
         - docker run usnistgov/oscal:dev /bin/sh -c "xmllint --noout --schema schema/xml/XSD/oscal-profile-interim.xsd examples/FedRAMP/FedRAMP*.xml"
         - docker run usnistgov/oscal:dev /bin/sh -c "xmllint --noout --schema schema/xml/XSD/oscal-catalog.xsd examples/SP800-53/SP800-53-rev4-catalog.xml"
     - stage: validate
+      before_install:
+        - docker build -t usnistgov/oscal:dev .
       script:
         - docker run usnistgov/oscal:dev /bin/sh -c "ajv validate -s schema/json/oscal-profile.json -r schema/json/oscal-core.json -d \"examples/FedRAMP/FedRAMP*.json\""
