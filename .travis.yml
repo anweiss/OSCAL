@@ -1,5 +1,24 @@
-# safelist
 branches:
   only:
-  - master
-  - docs
+    - master
+    - docs
+sudo : required
+services:
+  - docker
+
+stages:
+  - name: build
+    if: branch = master
+  - name: validate
+    if: branch = validate
+  - name: build-docs
+    if: branch = docs
+
+jobs:
+  include:
+    - stage: build
+      before_install:
+        - docker build -t usnistgov/oscal .
+    - stage: validate
+      script:
+        - docker run usnistgov/oscal /bin/sh -c "xmllint --noout --schema schema/xml/XSD/oscal-profile-interim.xsd examples/FedRAMP/FedRAMP-HIGH-crude.xml"
