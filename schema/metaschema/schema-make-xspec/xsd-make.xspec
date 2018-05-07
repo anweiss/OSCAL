@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" stylesheet="../xsd-produce.xsl"
+    
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:oscal="http://csrc.nist.gov/ns/oscal/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+    <x:scenario label="for METASCHEMA input, produce a schema">
+        <x:context href="../metaschema-sketch2.xml" select="/METASCHEMA"/>
+        <x:expect label="A schema">
+            <xs:schema  elementFormDefault="qualified" targetNamespace="http://csrc.nist.gov/ns/oscal/1.0"/>
+        </x:expect>
+    </x:scenario>
+    
+    <x:scenario label="for a component definition, produce an element declaration">
+        <x:context href="../metaschema-sketch2.xml" select="/define-component[@name='control']"/>
+        <x:expect label="An element declaration">
+            <xs:element name="control">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="oscal:title"/>
+                        <xs:element minOccurs="0" maxOccurs="unbounded" ref="oscal:prop"/>
+                        <xs:element minOccurs="0" maxOccurs="unbounded" ref="oscal:param"/>
+                        <xs:element minOccurs="0" maxOccurs="unbounded" ref="oscal:part"/>
+                        <xs:element minOccurs="0" maxOccurs="unbounded" ref="oscal:link"/>
+                        <xs:element minOccurs="0" ref="oscal:references"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </x:expect>
+    </x:scenario>
+    
+    <x:scenario label="for a line declaration, produce an element declaration permitting mixed content">
+        <x:context>
+        <line        named="title" required="yes"/>
+        </x:context>
+        <x:expect label="element declaration with name">
+            <xs:element name="title" minOccurs="1">
+                
+                <xs:complexType mixed="true"/>
+            </xs:element>
+        </x:expect>
+    </x:scenario>
+</x:description>

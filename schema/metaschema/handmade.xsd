@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://csrc.nist.gov/ns/oscal/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:oscal="http://csrc.nist.gov/ns/oscal/1.0">
   
+  
   <xs:element name="control">
     <xs:complexType>
       <xs:sequence>
@@ -80,16 +81,20 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" ref="oscal:prop"/>
-        <xs:choice minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="oscal:part"/>
-          <xs:element ref="oscal:p"/>
-          <xs:element ref="oscal:ul"/>
-        </xs:choice>
+        <xs:group minOccurs="0" maxOccurs="unbounded" ref="oscal:prose"/>
+        <xs:element minOccurs="0" ref="oscal:part"/>
       </xs:sequence>
       <xs:attribute name="class" use="required" type="xs:NCName"/>
       <xs:attribute name="id"                   type="xs:ID"/>
     </xs:complexType>
   </xs:element>
+  
+  <xs:group name="prose">
+    <xs:choice>
+      <xs:element ref="oscal:p"/>
+      <xs:element ref="oscal:ul"/>
+    </xs:choice>
+  </xs:group>
   
   <xs:element name="p" type="xs:string"/>
   

@@ -1,0 +1,191 @@
+default namespace = ""
+
+
+# extra-schema constraints:
+#  prose may not appear twice among siblings
+#  @named may not be repeated among siblings
+#  same w/ @group-as
+#  likewise @named may not equal any ../../@group-as
+#  @declared-as always resolves (to some /*/*/@name)
+
+start =
+  element METASCHEMA {
+    attribute top { xsd:NCName },
+    (  component-definition
+     | property-definition
+     | line-definition
+     | part-definition
+     | feature-definition
+     | statement-definition)+
+  }
+  
+component-definition = element define-component {
+         attribute group-as { xsd:NCName },
+         attribute name { xsd:NCName },
+         attribute require { xsd:NCName }?,
+         \attribute*,
+         ( lines  | line
+         | properties | property
+         | statements | statement
+         | parts | part
+         | features | feature
+         | components )*
+         
+       }
+
+components= element components { attribute declared-as { xsd:NCName } }
+
+# block-definition = element define-block {
+#        attribute name { xsd:NCName },
+#        \attribute*,
+#        (blocks | block)*
+#      }
+    
+# blocks =
+#   element blocks {
+#     attribute declared-as { xsd:NCName } |
+#     ( attribute named { xsd:NCName },
+#       attribute required { xsd:NCName }?,
+#       \attribute*,
+#       (blocks | block)* )
+#   }
+
+# block =
+#   element block {
+#     attribute declared-as { xsd:NCName } |
+#     ( attribute named { xsd:NCName },
+#       attribute required { xsd:NCName }?,
+#       \attribute*,
+#       (blocks | block)* )
+#   }
+
+  
+property-definition= element define-property {
+    attribute group-as { xsd:NCName }?,
+    attribute name { xsd:NCName },
+    \attribute*
+    }
+
+
+property =
+  element property {
+    attribute declared-as { xsd:NCName } |
+    ( attribute named { xsd:NCName },
+      attribute required { xsd:NCName }?,
+      \attribute* )
+  }
+
+properties =
+  element properties {
+    attribute declared-as { xsd:NCName } |
+    ( attribute group-as { xsd:NCName },
+      attribute named { xsd:NCName },
+      attribute required { xsd:NCName }?,
+      \attribute* )
+  }
+
+line-definition= element define-line {
+    attribute group-as { xsd:NCName },
+    attribute name { xsd:NCName },
+    \attribute*
+    }
+
+
+line =
+  element line {
+    attribute declared-as { xsd:NCName } |
+    ( attribute named { xsd:NCName },
+      attribute required { xsd:NCName }?,
+      \attribute* )
+  }
+
+lines =
+  element lines {
+    attribute declared-as { xsd:NCName } |
+    ( attribute group-as { xsd:NCName },
+      attribute named { xsd:NCName },
+      attribute required { xsd:NCName }?,
+      \attribute* )
+  }
+
+statement-definition= element define-statement {
+    attribute group-as { xsd:NCName }?,
+    attribute name { xsd:NCName },
+    \attribute+
+    }
+
+statement =
+  element statement {
+    attribute declared-as { xsd:NCName } |
+    ( attribute named { xsd:NCName },
+      attribute required { xsd:NCName }? )
+  }
+statements =
+  element statements {
+    attribute declared-as { xsd:NCName } |
+    ( attribute group-as { xsd:NCName },
+      attribute named { xsd:NCName },
+      attribute required { xsd:NCName }? )
+  }
+  
+  
+feature-definition = element define-feature {
+                 attribute group-as { xsd:NCName },
+                 attribute name { xsd:NCName },
+                 \attribute*,
+                 feature-contents 
+               }
+
+feature-contents = (property | properties | line | lines | statement | statements | feature | features | part | parts)*
+
+feature = element feature {
+                 attribute declared-as { xsd:NCName } | 
+                 ( attribute named { xsd:NCName },
+                   \attribute*,
+                   feature-contents )
+               }
+
+features = element features {
+                 attribute declared-as { xsd:NCName } | 
+                 ( attribute group-as { xsd:NCName },
+                   attribute named { xsd:NCName },
+                   \attribute*,
+                   feature-contents )
+               }
+
+part-definition = element define-part {
+                 attribute group-as { xsd:NCName },
+                 attribute name { xsd:NCName },
+                 \attribute*,
+                 (prose | feature-contents)* 
+               }
+
+
+
+part = element part {
+            attribute declared-as { xsd:NCName } | 
+            ( attribute named { xsd:NCName },
+              \attribute*,
+              (prose | feature-contents)* ) 
+               }
+
+
+parts = element parts {
+                 attribute declared-as { xsd:NCName } | 
+                   ( attribute group-as { xsd:NCName },
+                     attribute named { xsd:NCName },
+                     \attribute*,
+                     (prose | feature-contents)* )
+               }
+
+
+prose = element prose { empty }
+
+\attribute =
+  element attribute {
+    attribute datatype { xsd:NCName }?,
+    attribute name { xsd:NCName },
+    attribute required { xsd:NCName }?
+  }
+
+\mixed = element mixed { empty }

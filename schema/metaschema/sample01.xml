@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Validates with ../xml/oscal-catalog.xsd and with sample -->
-<control xmlns="http://csrc.nist.gov/ns/oscal/1.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://csrc.nist.gov/ns/oscal/1.0 handmade.xsd">
+<control xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://csrc.nist.gov/ns/oscal/1.0 metaschema-xsd-001.xsd"
+ xmlns="http://csrc.nist.gov/ns/oscal/1.0">
     <title>Sample Control, with Title</title>
     <prop class="prop1">Property 1</prop>
     <prop class="prop2">Property 2</prop>
@@ -41,7 +41,7 @@
     <part class="part8repeats">
         <p>Uhoh</p>
     </part>
-    <link rel="reference" href="#somelink">link</link>
+    <link rel="reference" href="#somelink">link <b>with bold</b></link>
     <references>
         <ref>
             <citation>A citation of some nature</citation>

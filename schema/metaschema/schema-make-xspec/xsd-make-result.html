@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns:test="http://www.jenitennison.com/xslt/unit-test" xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Test Report for home/wendell/Documents/OSCAL/schema/metaschema/xsd-produce.xsl (passed: 1 / pending: 0 / failed: 2 / total: 3)</title>
+      <link rel="stylesheet" type="text/css" href="file:/home/wendell/Oxygen%20XML%20Editor%2020/frameworks/xspec/src/reporter/test-report.css" />
+   </head>
+   <body>
+      <h1>Test Report</h1>
+      <p>Stylesheet: <a href="file:/home/wendell/Documents/OSCAL/schema/metaschema/xsd-produce.xsl">home/wendell/Documents/OSCAL/schema/metaschema/xsd-produce.xsl</a></p>
+      <p>Tested: 7 May 2018 at 15:09</p>
+      <h2>Contents</h2>
+      <table class="xspec">
+         <col width="75%" />
+         <col width="6.25%" />
+         <col width="6.25%" />
+         <col width="6.25%" />
+         <col width="6.25%" />
+         <thead>
+            <tr>
+               <th></th>
+               <th class="totals">passed: 1</th>
+               <th class="totals">pending: 0</th>
+               <th class="totals">failed: 2</th>
+               <th class="totals">total: 3</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr class="successful">
+               <th><a href="#d3e4">for METASCHEMA input, produce a schema</a></th>
+               <th class="totals">1</th>
+               <th class="totals">0</th>
+               <th class="totals">0</th>
+               <th class="totals">1</th>
+            </tr>
+            <tr class="failed">
+               <th><a href="#d3e32">for a component definition, produce an element declaration</a></th>
+               <th class="totals">0</th>
+               <th class="totals">0</th>
+               <th class="totals">1</th>
+               <th class="totals">1</th>
+            </tr>
+            <tr class="failed">
+               <th><a href="#d3e73">for a line declaration, produce an element declaration permitting mixed content</a></th>
+               <th class="totals">0</th>
+               <th class="totals">0</th>
+               <th class="totals">1</th>
+               <th class="totals">1</th>
+            </tr>
+         </tbody>
+      </table>
+      <div id="d3e4">
+         <h2 class="successful">for METASCHEMA input, produce a schema<span class="scenario-totals">passed: 1 / pending: 0 / failed: 0 / total: 1</span></h2>
+         <table class="xspec" id="t-d3e4">
+            <col width="75%" />
+            <col width="25%" />
+            <tbody>
+               <tr class="successful">
+                  <th>for METASCHEMA input, produce a schema</th>
+                  <th>passed: 1 / pending: 0 / failed: 0 / total: 1</th>
+               </tr>
+               <tr class="successful">
+                  <td>A schema</td>
+                  <td>Success</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <div id="d3e32">
+         <h2 class="failed">for a component definition, produce an element declaration<span class="scenario-totals">passed: 0 / pending: 0 / failed: 1 / total: 1</span></h2>
+         <table class="xspec" id="t-d3e32">
+            <col width="75%" />
+            <col width="25%" />
+            <tbody>
+               <tr class="failed">
+                  <th>for a component definition, produce an element declaration</th>
+                  <th>passed: 0 / pending: 0 / failed: 1 / total: 1</th>
+               </tr>
+               <tr class="failed">
+                  <td><a href="#d3e41">An element declaration</a></td>
+                  <td>Failure</td>
+               </tr>
+            </tbody>
+         </table>
+         <h3 id="d3e32">for a component definition, produce an element declaration</h3>
+         <h4 id="d3e41">An element declaration</h4>
+         <table class="xspecResult">
+            <thead>
+               <tr>
+                  <th>Result</th>
+                  <th>Expected Result</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td><pre>()</pre></td>
+                  <td><pre>&lt;<span class="diff">xs:element</span> xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:oscal="http://csrc.nist.gov/ns/oscal/1.0"
+         <span class="diff">name</span>="control"&gt;
+   &lt;<span class="diff">xs:complexType</span>&gt;
+      &lt;<span class="diff">xs:sequence</span>&gt;
+         &lt;<span class="diff">xs:element</span> <span class="diff">ref</span>="oscal:title" /&gt;
+         &lt;<span class="diff">xs:element</span> <span class="diff">minOccurs</span>="0"
+                     <span class="diff">maxOccurs</span>="unbounded"
+                     <span class="diff">ref</span>="oscal:prop" /&gt;
+         &lt;<span class="diff">xs:element</span> <span class="diff">minOccurs</span>="0"
+                     <span class="diff">maxOccurs</span>="unbounded"
+                     <span class="diff">ref</span>="oscal:param" /&gt;
+         &lt;<span class="diff">xs:element</span> <span class="diff">minOccurs</span>="0"
+                     <span class="diff">maxOccurs</span>="unbounded"
+                     <span class="diff">ref</span>="oscal:part" /&gt;
+         &lt;<span class="diff">xs:element</span> <span class="diff">minOccurs</span>="0"
+                     <span class="diff">maxOccurs</span>="unbounded"
+                     <span class="diff">ref</span>="oscal:link" /&gt;
+         &lt;<span class="diff">xs:element</span> <span class="diff">minOccurs</span>="0"
+                     <span class="diff">ref</span>="oscal:references" /&gt;
+      &lt;/xs:sequence&gt;
+   &lt;/xs:complexType&gt;
+&lt;/xs:element&gt;</pre></td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <div id="d3e73">
+         <h2 class="failed">for a line declaration, produce an element declaration permitting mixed content<span class="scenario-totals">passed: 0 / pending: 0 / failed: 1 / total: 1</span></h2>
+         <table class="xspec" id="t-d3e73">
+            <col width="75%" />
+            <col width="25%" />
+            <tbody>
+               <tr class="failed">
+                  <th>for a line declaration, produce an element declaration permitting mixed content</th>
+                  <th>passed: 0 / pending: 0 / failed: 1 / total: 1</th>
+               </tr>
+               <tr class="failed">
+                  <td><a href="#d3e85">element declaration with name</a></td>
+                  <td>Failure</td>
+               </tr>
+            </tbody>
+         </table>
+         <h3 id="d3e73">for a line declaration, produce an element declaration permitting mixed content</h3>
+         <h4 id="d3e85">element declaration with name</h4>
+         <table class="xspecResult">
+            <thead>
+               <tr>
+                  <th>Result</th>
+                  <th>Expected Result</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td><pre>()</pre></td>
+                  <td><pre>&lt;<span class="diff">xs:element</span> xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:oscal="http://csrc.nist.gov/ns/oscal/1.0"
+         <span class="diff">name</span>="title"
+         <span class="diff">minOccurs</span>="1"&gt;
+   &lt;<span class="diff">xs:complexType</span> <span class="diff">mixed</span>="true" /&gt;
+&lt;/xs:element&gt;</pre></td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </body>
+</html>

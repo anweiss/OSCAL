@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:oscal="http://csrc.nist.gov/ns/oscal/1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           targetNamespace="http://csrc.nist.gov/ns/oscal/1.0">
+   <xs:include schemaLocation="oscal-prose.xsd"/>
+   <xs:element name="control">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="title" minOccurs="1">
+               <xs:complexType mixed="true">
+                  <xs:group ref="oscal:everything-inline"/>
+                  <xs:attribute name="id" type="xs:ID"/>
+               </xs:complexType>
+            </xs:element>
+            <xs:element name="prop" maxOccurs="unbounded" minOccurs="0">
+               <xs:complexType mixed="true">
+                  <xs:attribute name="class" type="xs:string" use="required"/>
+                  <xs:attribute name="id" type="xs:ID"/>
+               </xs:complexType>
+            </xs:element>
+            <xs:element name="param" maxOccurs="unbounded" minOccurs="0">
+               <xs:complexType>
+                  <xs:sequence>
+                     <xs:element name="desc" maxOccurs="unbounded" minOccurs="0">
+                        <xs:complexType mixed="true">
+                           <xs:group ref="oscal:everything-inline"/>
+                           <xs:attribute name="id" type="xs:ID"/>
+                        </xs:complexType>
+                     </xs:element>
+                     <xs:element name="label" maxOccurs="unbounded" minOccurs="0">
+                        <xs:complexType mixed="true">
+                           <xs:group ref="oscal:everything-inline"/>
+                           <xs:attribute name="id" type="xs:ID"/>
+                        </xs:complexType>
+                     </xs:element>
+                     <xs:element name="value" minOccurs="0">
+                        <xs:complexType mixed="true">
+                           <xs:attribute name="id" type="xs:ID"/>
+                        </xs:complexType>
+                     </xs:element>
+                     <xs:element maxOccurs="unbounded" minOccurs="0" ref="oscal:link"/>
+                  </xs:sequence>
+                  <xs:attribute name="id" type="xs:ID" use="required"/>
+                  <xs:attribute name="class" type="xs:string"/>
+               </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="unbounded" minOccurs="0" ref="oscal:part"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" ref="oscal:link"/>
+            <xs:element minOccurs="0" ref="oscal:references"/>
+         </xs:sequence>
+         <xs:attribute name="class" type="xs:string"/>
+         <xs:attribute name="id" type="xs:ID"/>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="part">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="title" minOccurs="0">
+               <xs:complexType mixed="true">
+                  <xs:group ref="oscal:everything-inline"/>
+                  <xs:attribute name="id" type="xs:ID"/>
+               </xs:complexType>
+            </xs:element>
+            <xs:element name="prop" maxOccurs="unbounded" minOccurs="0">
+               <xs:complexType mixed="true">
+                  <xs:attribute name="class" type="xs:string" use="required"/>
+                  <xs:attribute name="id" type="xs:ID"/>
+               </xs:complexType>
+            </xs:element>
+            <xs:group ref="oscal:prose" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" ref="oscal:part"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" ref="oscal:link"/>
+         </xs:sequence>
+         <xs:attribute name="class" type="xs:string"/>
+         <xs:attribute name="id" type="xs:ID"/>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="link">
+      <xs:complexType mixed="true">
+         <xs:group ref="oscal:everything-inline"/>
+         <xs:attribute name="href" type="xs:anyURI"/>
+         <xs:attribute name="rel" type="xs:NCName"/>
+         <xs:attribute name="id" type="xs:ID"/>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="references">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="ref" maxOccurs="unbounded" minOccurs="0">
+               <xs:complexType>
+                  <xs:sequence>
+                     <xs:element name="citation" maxOccurs="unbounded" minOccurs="0">
+                        <xs:complexType mixed="true">
+                           <xs:group ref="oscal:everything-inline"/>
+                           <xs:attribute name="href" type="xs:anyURI"/>
+                           <xs:attribute name="id" type="xs:ID"/>
+                        </xs:complexType>
+                     </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="id" type="xs:ID"/>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+         <xs:attribute name="id" type="xs:ID"/>
+      </xs:complexType>
+   </xs:element>
+   <xs:group name="prose">
+      <xs:choice>
+         <xs:element ref="oscal:p"/>
+         <xs:element ref="oscal:ul"/>
+         <xs:element ref="oscal:ol"/>
+         <xs:element ref="oscal:pre"/>
+      </xs:choice>
+   </xs:group>
+</xs:schema>
