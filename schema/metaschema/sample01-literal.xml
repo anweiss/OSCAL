@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- OSCAL LITERALIZATION happened here -->
-<control xmlns="http://csrc.nist.gov/ns/oscal/1.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://csrc.nist.gov/ns/oscal/1.0 handmade.xsd">
+<control xmlns="http://csrc.nist.gov/ns/oscal/1.0">
     <title>Sample Control, with Title</title>
     <prop1 type="oscal:property" class="prop1">Property 1</prop1>
     <prop2 type="oscal:property" class="prop2">Property 2</prop2>

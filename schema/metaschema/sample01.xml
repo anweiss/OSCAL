@@ -19,7 +19,7 @@
         <value>Parameter value 4</value>
     </param>
     <part id="part5" class="part5">
-        <p>Here's some random prose.</p>
+        <p>Here's some random prose. <insert param-id="param4"/></p>
         <ul>
             <li>LI 1</li>
             <li>LI 2</li>
