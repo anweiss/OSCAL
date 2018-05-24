@@ -9,7 +9,6 @@ RUN wget -O saxon9he.zip "https://downloads.sourceforge.net/project/saxon/Saxon-
 ENV SAXON_HOME=/saxon
 ENV XSPEC_HOME=/xspec
 RUN git clone https://github.com/xspec/xspec.git
-RUN echo "sh /xspec/bin/xspec.sh" >> /usr/local/bin/xspec && \
-    chmod +x /usr/local/bin/xspec
+RUN cp /xspec/bin/xspec.sh /usr/local/bin/xspec
 WORKDIR /oscal-schema
 COPY oscal*.xsd ./
