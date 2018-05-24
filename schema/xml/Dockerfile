@@ -9,9 +9,6 @@ RUN wget -O saxon9he.zip "https://downloads.sourceforge.net/project/saxon/Saxon-
 ENV SAXON_HOME=/saxon
 ENV XSPEC_HOME=/xspec
 RUN git clone https://github.com/xspec/xspec.git
-RUN cp /xspec/bin/xspec.sh /usr/local/bin/xspec && \
-    echo "#!/bin/sh" >> /usr/local/bin/saxon && \
-    echo 'java -jar /saxon/saxon9he.jar "$*"' >> /usr/local/bin/saxon && \
-    chmod +x /usr/local/bin/saxon
+RUN cp /xspec/bin/xspec.sh /usr/local/bin/xspec
 WORKDIR /oscal-schema
 COPY oscal*.xsd ./
