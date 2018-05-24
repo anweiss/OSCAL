@@ -1,6 +1,6 @@
 FROM openjdk:8-jre
 RUN apt-get update && \
-    apt-get install -y git
+    apt-get install -y git libxml2 libxml2-utils
 RUN wget -O saxon9he.zip "https://downloads.sourceforge.net/project/saxon/Saxon-HE/9.8/SaxonHE9-8-0-12J.zip?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fsaxon%2Ffiles%2FSaxon-HE%2F9.8%2FSaxonHE9-8-0-12J.zip%2Fdownload&ts=1527114708" && \
     mkdir saxon && \
     mv saxon9he.zip saxon/ && \
