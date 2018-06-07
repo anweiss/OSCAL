@@ -1,5 +1,674 @@
 {
-  "$schema": "http://json-schema.org/draft-06/schema#",
-  "$id": "http://csrc.nist.gov/ns/oscal/1.0-catalog.json",
-  "$ref": "oscal-core.json#/definitions/catalog"
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "oscal-catalog.json",
+  "definitions": {
+    "catalog": {
+      "$id": "#/definitions/catalog",
+      "type": "object",
+      "properties": {
+        "title": {
+          "$ref": "#/definitions/title"
+        },
+        "declarations": {
+          "$ref": "oscal-declarations.json#/definitions/declarations"
+        },
+        "references": {
+          "$ref": "#/definitions/references"
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/section"
+          }
+        },
+        "controlGroups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/controlGroup"
+          }
+        },
+        "controls": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/control"
+          }
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "title",
+          "declarations",
+          "references",
+          "sections",
+          "groups",
+          "controls"
+        ]
+      }
+    },
+    "section": {
+      "$id": "#/definitions/section",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id"
+        },
+        "optionalClass": {
+          "$ref": "#/definitions/optionalClass"
+        },
+        "title": {
+          "$ref": "#/definitions/title"
+        },
+        "prose": {
+          "$ref": "#/definitions/prose"
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/section"
+          }
+        },
+        "references": {
+          "$ref": "#/definitions/references"
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "id",
+          "class",
+          "title",
+          "prose",
+          "sections",
+          "references"
+        ]
+      }
+    },
+    "controlGroup": {
+      "$id": "#/definitions/controlGroup",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id"
+        },
+        "optionalClass": {
+          "$ref": "#/definitions/optionalClass"
+        },
+        "title": {
+          "$ref": "#/definitions/title"
+        },
+        "params": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/param"
+          }
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/link"
+          }
+        },
+        "props": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/prop"
+          }
+        },
+        "parts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/part"
+          }
+        },
+        "controlGroups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/controlGroup"
+          }
+        },
+        "controls": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/control"
+          }
+        },
+        "references": {
+          "$ref": "#/definitions/references"
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "id",
+          "class",
+          "title",
+          "params",
+          "links",
+          "props",
+          "parts",
+          "groups",
+          "controls",
+          "references"
+        ]
+      }
+    },
+    "control": {
+      "$id": "#/definitions/control",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id"
+        },
+        "optionalClass": {
+          "$ref": "#/definitions/optionalClass"
+        },
+        "title": {
+          "$ref": "#/definitions/title"
+        },
+        "params": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/param"
+          }
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/link"
+          }
+        },
+        "props": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/prop"
+          }
+        },
+        "parts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/part"
+          }
+        },
+        "subcontrols": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/subcontrol"
+          }
+        },
+        "references": {
+          "$ref": "#/definitions/references"
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "id",
+          "class",
+          "title",
+          "params",
+          "links",
+          "props",
+          "parts",
+          "subcontrols",
+          "references"
+        ]
+      }
+    },
+    "subcontrol": {
+      "$id": "#/definitions/subcontrol",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id"
+        },
+        "optionalClass": {
+          "$ref": "#/definitions/id"
+        },
+        "title": {
+          "$ref": "#/definitions/title"
+        },
+        "params": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/param"
+          }
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/link"
+          }
+        },
+        "props": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/prop"
+          }
+        },
+        "parts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/part"
+          }
+        },
+        "references": {
+          "$ref": "#/definitions/references"
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "id",
+          "class",
+          "title",
+          "params",
+          "links",
+          "props",
+          "parts",
+          "references"
+        ]
+      }
+    },
+    "part": {
+      "$id": "#/definitions/part",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id"
+        },
+        "optionalClass": {
+          "$ref": "#/definitions/optionalClass"
+        },
+        "title": {
+          "$ref": "#/definitions/title"
+        },
+        "params": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/param"
+          }
+        },
+        "props": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/prop"
+          }
+        },
+        "prose": {
+          "$ref": "#/definitions/prose"
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/link"
+          }
+        },
+        "parts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/part"
+          }
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "id",
+          "class",
+          "title",
+          "params",
+          "props",
+          "prose",
+          "links",
+          "parts"
+        ]
+      }
+    },
+    "title": {
+      "$id": "#/definitions/title",
+      "type": "string"
+    },
+    "link": {
+      "$id": "#/definitions/link",
+      "type": "object",
+      "properties": {
+        "rel": {
+          "$ref": "oscal-declarations.json#/definitions/rel"
+        },
+        "href": {
+          "$ref": "#/definitions/href"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "rel",
+          "href",
+          "value"
+        ]
+      }
+    },
+    "param": {
+      "$id": "#/definitions/param",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id"
+        },
+        "optionalClass": {
+          "$ref": "#/definitions/optionalClass"
+        },
+        "dependsOn": {
+          "$ref": "#/definitions/dependsOn"
+        },
+        "label": {
+          "$ref": "#/definitions/label"
+        },
+        "desc": {
+          "$ref": "#/definitions/desc"
+        },
+        "req": {
+          "$ref": "#/definitions/req"
+        },
+        "value": {
+          "$ref": "oscal-declarations.json#/definitions/value"
+        },
+        "select": {
+          "$ref": "#/definitions/select"
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "id",
+          "class",
+          "dependsOn",
+          "label",
+          "desc",
+          "requirement",
+          "value",
+          "select"
+        ]
+      }
+    },
+    "dependsOn": {
+      "$id": "#/definitions/dependsOn",
+      "type": "string"
+    },
+    "desc": {
+      "$id": "#/definitions/desc",
+      "type": "string"
+    },
+    "label": {
+      "$id": "#/definitions/label",
+      "type": "string"
+    },
+    "req": {
+      "$id": "#/definitions/req",
+      "type": "object",
+      "properties": {
+        "test": {
+          "$ref": "#/definitions/test"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "test",
+          "value"
+        ]
+      }
+    },
+    "test": {
+      "$id": "#/definitions/test",
+      "type": "string"
+    },
+    "prop": {
+      "$id": "#/definitions/prop",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id"
+        },
+        "optionalClass": {
+          "$ref": "#/definitions/optionalClass"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "id",
+          "class",
+          "value"
+        ]
+      }
+    },
+    "prose": {
+      "$id": "#/definitions/prose",
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/definitions/id"
+            },
+            "optionalClass": {
+              "$ref": "#/definitions/optionalClass"
+            },
+            "assignments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/assign"  
+              }              
+            },
+            "selections": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/select"
+              }
+            }
+          },
+          "propertyNames": {
+            "enum": [
+              "id",
+              "class",
+              "insertions",
+              "selections"
+            ]
+          }
+        }
+      ]
+    },
+    "references": {
+      "$id": "#/definitions/references",
+      "type": "object",
+      "properties": {
+        "refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ref"
+          }
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/link"
+          }
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "refs",
+          "links"
+        ]
+      }
+    },
+    "ref": {
+      "$id": "#/definitions/ref",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id"
+        },
+        "citations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/citation"
+          }
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/link"
+          }
+        },
+        "prose": {
+          "$ref": "#/definitions/prose"
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "id",
+          "citations",
+          "links",
+          "prose"
+        ]
+      }
+    },
+    "citation": {
+      "$id": "#/definitions/citation",
+      "type": "object",
+      "properties": {
+        "href": {
+          "$ref": "#/definitions/href"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "href",
+          "value"
+        ]
+      }
+    },
+    "assign": {
+      "$id": "#/definitions/assign",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id"
+        },
+        "paramId": {
+          "$ref": "#/definitions/paramId"
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "id",
+          "paramId"
+        ]
+      }
+    },
+    "paramId": {
+      "$id": "#/definitions/paramId",
+      "type": "string",
+      "oneOf": [
+        {
+          "format": "json-pointer"
+        },
+        {
+          "format": "relative-json-pointer"
+        }
+      ]
+    },
+    "select": {
+      "$id": "#/definitions/select",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id"
+        },
+        "howMany": {
+          "$ref": "#/definitions/howMany"
+        },
+        "choices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/choice"
+          }
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "id",
+          "howMany",
+          "choices"
+        ]
+      }
+    },
+    "howMany": {
+      "$id": "#/definitions/howMany",
+      "type": "string",
+      "enum": [
+        "one or more"
+      ]
+    },
+    "choice": {
+      "$id": "#/definitions/choice",
+      "type": "object",
+      "properties": {
+        "assignments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/assign"
+          }
+        },
+        "prose": {
+          "$ref": "#/definitions/prose"
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "insertions",
+          "prose"
+        ]
+      }
+    },
+    "id": {
+      "$id": "#/definitions/id",
+      "type": "string"
+    },
+    "requiredClass": {
+      "$id": "#/definitions/requiredClass",
+      "type": "string"
+    },
+    "optionalClass": {
+      "$id": "#/definitions/optionalClass",
+      "type": "string"
+    },
+    "href": {
+      "$id": "#/definitions/href",
+      "type": "string",
+      "format": "uri-reference"
+    }
+  },
+  "type": "object",
+  "properties": {
+    "catalog": {
+      "$ref": "#/definitions/catalog"
+    }
+  },
+  "propertyNames": {
+    "enum": [
+      "catalog"
+    ]
+  }
 }

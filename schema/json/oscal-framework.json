@@ -1,5 +1,77 @@
 {
-  "$schema": "http://json-schema.org/draft-06/schema#",
-  "$id": "http://csrc.nist.gov/ns/oscal/1.0-framework.json",
-  "$ref": "oscal-core.json#/definitions/framework"
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "oscal-framework.json",
+  "definitions": {
+    "framework": {
+      "$id": "#/definitions/framework",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "oscal-catalog.json#/definitions/id"
+        },
+        "optionalClass": {
+          "$ref": "oscal-catalog.json#/definitions/optionalClass"
+        },
+        "title": {
+          "$ref": "oscal-catalog.json#/definitions/title"
+        },
+        "declarations": {
+          "oneOf": [
+            {
+              "$ref": "oscal-declarations.json#/definitions/declarations"
+            },
+            {
+              "href": {
+                "type": "oscal-catalog.json#/definitions/href"
+              }
+            }
+          ]
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "$ref": "oscal-catalog.json#/definitions/section"
+          }
+        },
+        "componentGroups": {
+          "type": "array",
+          "items": {
+            "$ref": "oscal-catalog.json#/definitions/componentGroup"
+          }
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "$ref": "oscal-catalog.json#/definitions/component"
+          }
+        },
+        "references": {
+          "$ref": "oscal-catalog.json#/definitions/references"
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "id",
+          "class",
+          "title",
+          "declarations",
+          "sections",
+          "groups",
+          "components",
+          "references"
+        ]
+      }
+    }
+  },
+  "type": "object",
+  "properties": {
+    "framework": {
+      "$ref": "#/definitions/framework"
+    }
+  },
+  "propertyNames": {
+    "enum": [
+      "framework"
+    ]
+  }
 }

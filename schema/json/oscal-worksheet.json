@@ -1,5 +1,21 @@
 {
-  "$schema": "http://json-schema.org/draft-06/schema#",
-  "$id": "http://csrc.nist.gov/ns/oscal/1.0-worksheet.json",
-  "$ref": "oscal-core.json#/definitions/worksheet"
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "oscal-worksheet.json",
+  "definitions": {
+    "worksheet": {
+      "$id": "#/definitions/worksheet",
+      "$ref": "oscal-framework.json#/definitions/framework"
+    }
+  },
+  "type": "object",
+  "properties": {
+    "worksheet": {
+      "$ref": "#/definitions/worksheet"
+    }
+  },
+  "propertyNames": {
+    "enum": [
+      "worksheet"
+    ]
+  }
 }

@@ -1,0 +1,287 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "oscal-declarations.json",
+  "definitions": {
+    "declarations": {
+      "$id": "#/definitions/declarations",
+      "type": "object",
+      "properties": {
+        "href": {
+          "$ref": "#/definitions/href"
+        },
+        "parameterDeclarations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/parameterDeclaration"
+          }
+        },
+        "propertyDeclarations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/propertyDeclaration"
+          }
+        },
+        "partDeclarations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/partDeclaration"
+          }
+        },
+        "paragraphDeclarations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/paragraphDeclaration"
+          }
+        },
+        "linkDeclarations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/linkDeclaration"
+          }
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "href",
+          "parameterDeclarations",
+          "propertyDeclarations",
+          "partDeclarations",
+          "paragraphDeclarations",
+          "linkDeclarations"
+        ]
+      }
+    },
+    "parameterDeclaration": {
+      "$id": "#/definitions/parameterDeclaration",
+      "type": "null"
+    },
+    "propertyDeclaration": {
+      "$id": "#/definitions/propertyDeclaration",
+      "type": "object",
+      "properties": {
+        "class": {
+          "$ref": "#/definitions/class"
+        },
+        "context": {
+          "$ref": "#/definitions/context"
+        },
+        "singleton": {
+          "$ref": "#/definitions/singleton"
+        },
+        "required": {
+          "$ref": "#/definitions/required"
+        },
+        "identifier": {
+          "$ref": "#/definitions/identifier"
+        },
+        "regex": {
+          "$ref": "#/definitions/regex"
+        },
+        "calculations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/calc"
+          }
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/value"
+          }
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "class",
+          "context",
+          "singleton",
+          "required",
+          "identifier",
+          "regex",
+          "calculations",
+          "values"
+        ]
+      }
+    },
+    "partDeclaration": {
+      "$id": "#/definitions/partDeclaration",
+      "type": "object",
+      "properties": {
+        "class": {
+          "$ref": "#/definitions/class"
+        },
+        "context": {
+          "$ref": "#/definitions/context"
+        },
+        "singleton": {
+          "$ref": "#/definitions/singleton"
+        },
+        "required": {
+          "$ref": "#/definitions/required"
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "class",
+          "context",
+          "singleton",
+          "required"
+        ]
+      }
+    },
+    "paragraphDeclaration": {
+      "$id": "#/definitions/paragraphDeclaration",
+      "type": "object",
+      "properties": {
+        "class": {
+          "$ref": "#/definitions/class"
+        },
+        "context": {
+          "$ref": "#/definitions/context"
+        },
+        "singleton": {
+          "$ref": "#/definitions/singleton"
+        },
+        "required": {
+          "$ref": "#/definitions/required"
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "class",
+          "context",
+          "singleton",
+          "required"
+        ]
+      }
+    },
+    "linkDeclaration": {
+      "$id": "#/definitions/linkDeclaration",
+      "type": "object",
+      "properties": {
+        "rel": {
+          "$ref": "#/definitions/rel"
+        },
+        "context": {
+          "$ref": "#/definitions/context"
+        },
+        "singleton": {
+          "$ref": "#/definitions/singleton"
+        },
+        "required": {
+          "$ref": "#/definitions/required"
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "rel",
+          "context",
+          "required",
+          "singleton"
+        ]
+      }
+    },
+    "identifier": {
+      "$id": "#/definitions/identifier",
+      "type": "boolean"
+    },
+    "singleton": {
+      "$id": "#/definitions/singleton",
+      "type": "boolean"
+    },
+    "required": {
+      "$id": "#/definitions/required",
+      "type": "boolean"
+    },
+    "regex": {
+      "$id": "#/definitions/regex",
+      "type": "string",
+      "format": "regex"
+    },
+    "value": {
+      "$id": "#/definitions/value",
+      "type": "string"
+    },
+    "calc": {
+      "$id": "#/definitions/calc",
+      "type": "object",
+      "properties": {
+        "inheritances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/inherit"
+          }
+        },
+        "autonums": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/autonum"
+          }
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "propertyNames": {
+        "enum": [
+          "inheritances",
+          "autonums",
+          "value"
+        ]
+      }
+    },
+    "inherit": {
+      "$id": "#/definitions/inherit",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "from": {
+              "type": "string"
+            }
+          },
+          "propertyNames": {
+            "enum": [
+              "from"
+            ]
+          }
+        },
+        {
+          "type": "boolean"
+        }
+      ]
+    },
+    "autonum": {
+      "$id": "#/definitions/autonum",
+      "type": "string"
+    },
+    "context": {
+      "$id": "#/definitions/context",
+      "type": "string"
+    },
+    "rel": {
+      "$id": "#/definitions/rel",
+      "type": "string"
+    },
+    "href": {
+      "$id": "#/definitions/href",
+      "type": "string",
+      "format": "uri-reference"
+    },
+    "class": {
+      "$id": "#/definitions/class",
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "properties": {
+    "declarations": {
+      "$ref": "#/definitions/declarations"
+    }
+  },
+  "propertyNames": {
+    "enum": [
+      "declarations"
+    ]
+  }
+}
