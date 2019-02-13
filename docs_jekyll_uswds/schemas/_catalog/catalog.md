@@ -1,5 +1,5 @@
 ---
-title: catalog (root element)
+title: catalog
 schema: catalog
 properties:
   - name: title

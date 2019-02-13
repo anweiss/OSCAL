@@ -12,6 +12,8 @@
 #   links: primary
 #
 primary:
+  - text: Home
+    href: /
   - text: Learn More
     links:
       - text: Overview
@@ -22,7 +24,7 @@ primary:
         href: /learnmore/securitypros
       - text: For Tool Vendors
         href: /learnmore/toolvendors
-      - text: For OSCAL Content Authors
+      - text: For Content Authors
         href: /learnmore/authors
   - text: Resources
     links:
@@ -30,8 +32,6 @@ primary:
         href: /resources/
       - text: Roadmap
         href: /resources/roadmap/
-      - text: Documentation
-        href: /docs/
       - text: Case Studies
         href: /resources/casestudies/
       - text: Examples
@@ -40,19 +40,18 @@ primary:
         href: /resources/scenarios/
       - text: GitHub Repo
         href: https://github.com/usnistgov/OSCAL
-        external: true
   - text: Documentation
     links:
       - text: Concepts
         href: /docs/
-      - text: Components
-        href: /docs/components/
+      - text: Schemas
+        href: /docs/schemas/
       - text: Schema Reference
         href: /docs/schemaref/
   - text: Walkthrough
     href: /walkthrough/
   - text: Community
-    href: /community/
+    href: /getinvolved/
   # - text: Navigation section
   #   links:
   #     - text: Demo link A
@@ -80,14 +79,12 @@ secondary:
     href: /contact/
 
 schemaref:
-  - text: Schema Reference
-    href: /docs/schemaref/
   - text: Catalog
-    href: /docs/schemaref/catalog/
+    href: "#"
   - text: Profile
-    href: /docs/schemaref/profile/
+    href: "#"
 
-components:
+schema:
   # - text: Overview
   #   href: /docs/
   # - text: Concepts
@@ -99,12 +96,10 @@ components:
   #   #     href: /two/b/
   #   #   - text: Demo link C
   #   #     href: /two/c/
-  - text: Components
-    href: /docs/components/
   - text: Catalog
-    href: /docs/components/catalog/
+    href: "#"
   - text: Profile
-    href: /docs/components/profile/
+    href: "#"
 #   # - text: Sidenav External link
 #   #   href: https://18f.gsa.gov
 #   external: true
