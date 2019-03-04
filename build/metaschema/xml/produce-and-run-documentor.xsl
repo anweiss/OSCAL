@@ -6,7 +6,8 @@
     xmlns:html="http://www.w3.org/1999/xhtml"
     version="3.0">
     
-    <xsl:output method="xhtml" omit-xml-declaration="true" indent="no"/>
+    <!-- Controls indenting -->
+    <xsl:output method="xhtml" omit-xml-declaration="true" indent="yes"/>
     
     <xsl:variable name="source" select="/"/>
     <xsl:variable name="metaschema-code" select="$source/*/short-name"/>
