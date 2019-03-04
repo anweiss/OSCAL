@@ -434,6 +434,10 @@
   
   <define-field name="author" group-as="authors" acquire-from="metadata"/>
   
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 7c741778c0dfbaf458c84fe42b2287f3d9756288
   <define-field name="publication-date" acquire-from="metadata"/>
   
   <define-field name="version" acquire-from="metadata"/>
