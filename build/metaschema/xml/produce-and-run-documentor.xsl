@@ -7,7 +7,7 @@
     version="3.0">
     
     <!-- Controls indenting -->
-    <xsl:output method="xhtml" omit-xml-declaration="true" indent="yes"/>
+    <xsl:output method="xhtml" omit-xml-declaration="true" indent="no"/>
     
     <xsl:variable name="source" select="/"/>
     <xsl:variable name="metaschema-code" select="$source/*/short-name"/>
