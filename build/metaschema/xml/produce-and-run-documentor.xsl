@@ -62,7 +62,6 @@
         </xsl:for-each>
     </xsl:template>
     
-    
     <xsl:template name="yaml-header">
         <xsl:text>---&#xA;</xsl:text>
         <xsl:text expand-text="true">title: { $metaschema-code } { @id } documentation &#xA;</xsl:text>
