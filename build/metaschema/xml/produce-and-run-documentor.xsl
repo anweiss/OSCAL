@@ -13,7 +13,7 @@
     <xsl:variable name="metaschema-code" select="$source/*/short-name"/>
     
     <!--"C:\Users\wap1\Documents\OSCAL\docs_jekyll_uswds\content\documentation\schemas\oscal-catalog\catalog.md"-->
-    <xsl:variable name="result-path" select="'../../../docs_jekyll_uswds/content/documentation/schemas/_' || $metaschema-code"/>
+    <xsl:variable name="result-path" select="'../../../docs/content/documentation/schemas/_' || $metaschema-code"/>
     
     <!-- The function fn:transform() returns a map, whose primary results are under 'output'
          unless a base output URI is given
