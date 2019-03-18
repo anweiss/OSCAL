@@ -29,11 +29,11 @@ collections:
     oscal-catalog-xml:
       title: Catalog XML
     oscal-profile-xml:
-      title: Profile XML:
+      title: Profile XML
     oscal-catalog-json:
       title: Catalog JSON
     oscal-profile-json:
-      title: Profile JSON:
+      title: Profile JSON
 
 markdown: kramdown
 highlighter: rouge

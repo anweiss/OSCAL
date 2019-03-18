@@ -17,7 +17,7 @@
     <xsl:variable name="metaschema-code" select="$source/*/short-name"/>
     
     <!--"C:\Users\wap1\Documents\OSCAL\docs_jekyll_uswds\content\documentation\schemas\oscal-catalog\catalog.md"-->
-    <xsl:variable name="result-path" select="string-join(('../../../docs/content/documentation/schemas',$target-format,('_' || $metaschema-code)),'/')"/>
+    <xsl:variable name="result-path" select="('../../../docs/content/documentation/schemas/_' || $metaschema-code || '-' || $target-format)"/>
 
     <!-- This template produces an XSLT dynamically by running an XSLT with a parameter set. -->
     <xsl:variable name="xslt">
@@ -68,8 +68,8 @@
     <xsl:template name="yaml-header">
         <xsl:param name="tagname" select="()"/>
         <xsl:text>---&#xA;</xsl:text>
-        <xsl:text expand-text="true">title: { $metaschema-code } schema{ $tagname ! (': ' || .) } documentation&#xA;</xsl:text>
-        <xsl:text expand-text="true">description: { $metaschema-code } schema documentation{ $tagname ! (': ' || .) }&#xA;</xsl:text>
+        <xsl:text expand-text="true">title: { $metaschema-code } schema{ $tagname ! (' - ' || .) } documentation&#xA;</xsl:text>
+        <xsl:text expand-text="true">description: { $metaschema-code } schema documentation{ $tagname ! (' - ' || .) }&#xA;</xsl:text>
         <xsl:if test="exists($tagname)">
           <xsl:text expand-text="true">tagname: { $tagname }&#xA;</xsl:text>
         </xsl:if>
