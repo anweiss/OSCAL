@@ -32,7 +32,7 @@
 
    <xsl:key name="definitions" match="define-flag | define-field | define-assembly" use="@name"/>
    <xsl:key name="references" match="flag"             use="@name"/>
-   <xsl:key name="references" match="field | assembly" use="@named"/>
+   <xsl:key name="references" match="field | assembly | fields | assemblies" use="@named"/>
    
    <xsl:template match="/">
       <html>
@@ -44,6 +44,7 @@
          </body>
       </html>
    </xsl:template>
+
 
 
    <!-- only works when XML-to-JSON converter is in the import tree -->
@@ -86,6 +87,10 @@
          define-assembly[not(@show-docs = 'xml' or @show-docs = 'xml json')]"/>-->
 
 
+   <xsl:template match="define-assembly | define-field | define-flag" mode="link-here">
+      <a href="#{ @name }"><xsl:value-of select="@name"/></a>
+   </xsl:template>
+   
 
 
    <xsl:template match="define-flag">
@@ -99,6 +104,13 @@
             <xsl:call-template name="cross-links"/>
          </header>
          <xsl:apply-templates/>
+         <xsl:for-each-group select="key('references',@name)/parent::*" group-by="true()">
+            <p><xsl:text>This attribute appears on: </xsl:text>
+               <xsl:for-each select="current-group()">
+                  <xsl:if test="not(position() eq 1)">, </xsl:if>
+                  <xsl:apply-templates select="." mode="link-here"/>               
+               </xsl:for-each>.</p>
+         </xsl:for-each-group>
       </div>
    </xsl:template>
 
@@ -157,6 +169,13 @@
             </xsl:if>
             <xsl:apply-templates select="remarks"/>
             <xsl:apply-templates select="example"/>
+            <xsl:for-each-group select="key('references',@name)/ancestor::model/parent::*" group-by="true()">
+               <p><xsl:text>This element appears inside: </xsl:text>
+                  <xsl:for-each select="current-group()">
+                     <xsl:if test="not(position() eq 1)">, </xsl:if>
+                     <xsl:apply-templates select="." mode="link-here"/>               
+                  </xsl:for-each>.</p>
+            </xsl:for-each-group>
          </xsl:for-each>
       </div>
    </xsl:template>
@@ -188,6 +207,13 @@
                select="flag | (model//* except model//(choice | description/descendant-or-self::* | remarks/descendant-or-self::*))"
             />
          </xsl:call-template>-->
+            <xsl:for-each-group select="key('references',@name)/ancestor::model/parent::*" group-by="true()">
+               <p><xsl:text>This element appears inside: </xsl:text>
+                  <xsl:for-each select="current-group()">
+                     <xsl:if test="not(position() eq 1)">, </xsl:if>
+                     <xsl:apply-templates select="." mode="link-here"/>               
+                  </xsl:for-each>.</p>
+            </xsl:for-each-group>
          </xsl:for-each>
       </div>
    </xsl:template>
