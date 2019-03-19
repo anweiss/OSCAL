@@ -92,6 +92,8 @@ schemas:
     href: /docs/schemas/oscal-profile-xml/
   - text: Profile JSON Schema
     href: /docs/schemas/oscal-profile-json/
+  - text: OSCAL Prose Model
+    href: /docs/schemas/oscal-prose/
 
 components:
   # - text: Overview
