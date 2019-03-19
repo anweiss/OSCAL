@@ -84,10 +84,14 @@ secondary:
 schemas:
   - text: Schema Reference
     href: /docs/schemas/
-  - text: Catalog
-    href: /docs/schemas/oscal-catalog/
-  - text: Profile
-    href: /docs/schemas/oscal-profile/
+  - text: Catalog XML Schema
+    href: /docs/schemas/oscal-catalog-xml/
+  - text: Profile XML Schema
+    href: /docs/schemas/oscal-profile-xml/
+  - text: Catalog JSON Schema
+    href: /docs/schemas/oscal-catalog-json/
+  - text: Profile JSON Schema
+    href: /docs/schemas/oscal-profile-json/
 
 components:
   # - text: Overview

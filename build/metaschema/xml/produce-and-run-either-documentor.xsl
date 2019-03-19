@@ -11,7 +11,7 @@
 
     <!-- for development -->
     <!--<xsl:param name="target-format" select="()"/>-->
-    <xsl:param name="target-format" as="xs:string">json</xsl:param>
+    <xsl:param name="target-format" as="xs:string">xml</xsl:param>
     
     <xsl:variable name="source" select="/"/>
     <xsl:variable name="metaschema-code" select="$source/*/short-name"/>
@@ -59,6 +59,7 @@
                method="xhtml">
                 <xsl:call-template name="yaml-header">
                     <xsl:with-param name="tagname" select="string(@id)"/>
+                    <xsl:with-param name="root"    select="starts-with(html:h5[1],(@id || ' is the root' ))"/>
                 </xsl:call-template>
                 <xsl:apply-templates select="." mode="unescape"/>
             </xsl:result-document>
@@ -67,16 +68,18 @@
     
     <xsl:template name="yaml-header">
         <xsl:param name="tagname" select="()"/>
+        <xsl:param name="root"    as="xs:boolean" select="false()"/>
         <xsl:text>---&#xA;</xsl:text>
-        <xsl:text expand-text="true">title: { $metaschema-code } schema{ $tagname ! (' - ' || .) } documentation&#xA;</xsl:text>
+        <xsl:text expand-text="true">title: Schema Documentation - { $metaschema-code }{ $tagname ! (' - ' || .) }&#xA;</xsl:text>
         <xsl:text expand-text="true">description: { $metaschema-code } schema documentation{ $tagname ! (' - ' || .) }&#xA;</xsl:text>
         <xsl:if test="exists($tagname)">
           <xsl:text expand-text="true">tagname: { $tagname }&#xA;</xsl:text>
         </xsl:if>
-        <xsl:text expand-text="true">permalink: /docs/schemas/{$target-format}/_{ $metaschema-code }/{ $metaschema-code }{ $tagname ! ('_' || .) }/&#xA;</xsl:text>
+        <!--When $tagname is missing, the last step is omitted -->
+        <xsl:text expand-text="true">permalink: /docs/schemas/{ $metaschema-code }-{$target-format}/{ $tagname ! ($metaschema-code || '_' || .) }&#xA;</xsl:text>
         <xsl:text expand-text="true">layout: post&#xA;</xsl:text>
-        <xsl:text expand-text="true">schema: { $metaschema-code }&#xA;</xsl:text>
-        <xsl:text expand-text="true">schema-format: { $target-format }&#xA;</xsl:text>
+        <xsl:text expand-text="true">model: { $metaschema-code }-{ $target-format }&#xA;</xsl:text>
+        <xsl:if test="$root">root: true&#xA;</xsl:if>
         <xsl:text>---&#xA;</xsl:text>
     </xsl:template>
             
