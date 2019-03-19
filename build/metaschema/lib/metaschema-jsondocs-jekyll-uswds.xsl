@@ -16,7 +16,7 @@
    
    -->
    <xsl:import href="metaschema-common-html.xsl"/>
-   <xsl:variable name="metaschema-code" select="/*/short-name"/>
+   <xsl:variable name="metaschema-code" select="/*/short-name || '-json'"/>
    
    <xsl:strip-space elements="*"/>
 
@@ -88,11 +88,22 @@
       <xsl:variable name="definition" select="if (exists($imported)) then key('definitions',@name,$imported) else ."/>
       <div class="definition define-flag" id="{@name}">
          <header>
-         <h4 id="{$metaschema-code}_{@name}" class="usa-color-text usa-color-primary usa-color-text-white">
+         <h4 id="{$metaschema-code}_{@name}" class="usa-color-text usa-color-primary-alt-darkest usa-color-text-white">
             <xsl:apply-templates select="$definition/formal-name" mode="inline"/>: <xsl:apply-templates
                select="@name"/> attribute</h4>
+            <xsl:call-template name="cross-links"/>
          </header>
          <xsl:apply-templates/>
+      </div>
+   </xsl:template>
+   
+   <xsl:template name="cross-links">
+      <xsl:variable name="alt-schema" select="replace($metaschema-code,'-json$','-xml')"/>
+      <div style="float:right">
+         <a href="/docs/schemas/{ $alt-schema }/#{ $alt-schema }_{ @name}">
+            <button>XML</button>
+         </a>
+         <button disabled="disabled">JSON</button>
       </div>
    </xsl:template>
 
@@ -101,9 +112,11 @@
       <xsl:variable name="definition" select="if (exists($imported)) then key('definitions',@name,$imported) else ."/>
       <div class="definition define-field" id="{@name}">
          <header>
-         <h4 id="{$metaschema-code}_{@name}" class="usa-color-text usa-color-primary usa-color-text-white">
+         <h4 id="{$metaschema-code}_{@name}" class="usa-color-text usa-color-primary-alt-darkest usa-color-text-white">
             <xsl:apply-templates select="$definition/formal-name" mode="inline"/>: <xsl:apply-templates
                select="@name"/> string object</h4>
+            
+            <xsl:call-template name="cross-links"/>
          </header>
          <xsl:for-each select="$definition">
             <xsl:choose>
@@ -150,9 +163,11 @@
       
       <div class="definition define-assembly" id="{@name}">
       <header>
-         <h4 id="{$metaschema-code}_{@name}" class="usa-color-text usa-color-primary usa-color-text-white">
+         <h4 id="{$metaschema-code}_{@name}" class="usa-color-text usa-color-primary-alt-darkest usa-color-text-white">
             <xsl:apply-templates select="$definition/formal-name" mode="inline"/>: <xsl:apply-templates
                select="@name"/> object</h4>
+         
+         <xsl:call-template name="cross-links"/>
       </header>
          <!-- No mention of @group-as on XML side       -->
          <xsl:if test="@name = ../@root">
