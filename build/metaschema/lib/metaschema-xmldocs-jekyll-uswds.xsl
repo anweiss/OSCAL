@@ -311,28 +311,17 @@
       <ul class="usa-accordion-bordered">
          <li>
             <button class="usa-accordion-button" aria-expanded="true"
-               aria-controls="{ ../@name }_example{$n}_xml">XML</button>
+               aria-controls="{ ../@name }_example{$n}_xml">
+               <xsl:text>Example</xsl:text>
+            <xsl:for-each select="description">: <xsl:apply-templates/></xsl:for-each></button>
             <div id="{ ../@name }_example{$n}_xml" class="usa-accordion-content">
                <xsl:text>&#xA;{% highlight xml %}</xsl:text>
                <xsl:apply-templates select="*" mode="as-example"/>
                <xsl:text>&#xA;{% endhighlight %}&#xA;</xsl:text>
+               <xsl:apply-templates select="remarks"/>
             </div>
          </li>
-         <!--<li>
-            <button class="usa-accordion-button" aria-expanded="true"
-               aria-controls="{ ../@name }_example{$n}_json">JSON</button>
-            <div id="{ ../@name }_example{$n}_json" class="usa-accordion-content">
-               <xsl:text>&#xA;{% highlight json %}</xsl:text>
-               <xsl:apply-templates select="*" mode="jsonize"/>
-               <xsl:text>&#xA;{% endhighlight %}&#xA;</xsl:text>
-            </div>
-         </li>-->
-      </ul>
-
-      <xsl:apply-templates select="description"/>
-
-      <xsl:apply-templates select="remarks"/>
-
+     </ul>
    </xsl:template>
 
    <xsl:template match="*" mode="serialize">
