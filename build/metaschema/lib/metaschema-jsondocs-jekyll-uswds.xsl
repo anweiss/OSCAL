@@ -30,7 +30,7 @@
 
    <xsl:key name="definitions" match="define-flag | define-field | define-assembly" use="@name"/>
    <xsl:key name="references" match="flag"             use="@name"/>
-   <xsl:key name="references" match="field | assembly" use="@named"/>
+   <xsl:key name="references" match="field | assembly | fields | assemblies" use="@named"/>
    
    <xsl:template match="/">
       <html>
@@ -88,12 +88,20 @@
       <xsl:variable name="definition" select="if (exists($imported)) then key('definitions',@name,$imported) else ."/>
       <div class="definition define-flag" id="{@name}">
          <header>
-         <h4 id="{$metaschema-code}_{@name}" class="usa-color-text usa-color-primary-alt-darkest usa-color-text-white">
+         <h4 id="{$metaschema-code}_{@name}" class="usa-color-text usa-color-primary-alt-lightest usa-color-text">
             <xsl:apply-templates select="$definition/formal-name" mode="inline"/>: <xsl:apply-templates
                select="@name"/> attribute</h4>
             <xsl:call-template name="cross-links"/>
          </header>
          <xsl:apply-templates/>
+         <xsl:for-each-group select="key('references',@name)/parent::*" group-by="true()">
+            <p><xsl:text>This object appears as a property on: </xsl:text>
+               <xsl:for-each select="current-group()">
+                  <xsl:if test="not(position() eq 1)">, </xsl:if>
+                  <xsl:apply-templates select="." mode="link-here"/>               
+               </xsl:for-each>.</p>
+         </xsl:for-each-group>
+         
       </div>
    </xsl:template>
    
@@ -109,10 +117,11 @@
 
    <xsl:template match="define-field">
       <xsl:variable name="imported" select="/*/import[@name=current()/@acquire-from]/document(@href,$home)"/>
+      <!--XXX rewire for new import logic -->
       <xsl:variable name="definition" select="if (exists($imported)) then key('definitions',@name,$imported) else ."/>
       <div class="definition define-field" id="{@name}">
          <header>
-         <h4 id="{$metaschema-code}_{@name}" class="usa-color-text usa-color-primary-alt-darkest usa-color-text-white">
+         <h4 id="{$metaschema-code}_{@name}" class="usa-color-text usa-color-primary-alt-lightest">
             <xsl:apply-templates select="$definition/formal-name" mode="inline"/>: <xsl:apply-templates
                select="@name"/> string object</h4>
             
@@ -124,7 +133,7 @@
                   <p>Supports Markdown</p>
                </xsl:when>
                <xsl:when test="@as = 'boolean'">
-                  <p>True whenever given (presence signifies Boolean value)</p>
+                  <p>A Boolean value</p>
                </xsl:when>
             </xsl:choose>
             <xsl:apply-templates select="formal-name | description"/>
@@ -153,6 +162,13 @@
             </xsl:if>
             <xsl:apply-templates select="remarks"/>
             <xsl:apply-templates select="example"/>
+            <xsl:for-each-group select="key('references',@name)/ancestor::model/parent::*" group-by="true()">
+               <p><xsl:text>This object appears as a property on: </xsl:text>
+                  <xsl:for-each select="current-group()">
+                     <xsl:if test="not(position() eq 1)">, </xsl:if>
+                     <xsl:apply-templates select="." mode="link-here"/>               
+                  </xsl:for-each>.</p>
+            </xsl:for-each-group>
          </xsl:for-each>
       </div>
    </xsl:template>
@@ -163,7 +179,7 @@
       
       <div class="definition define-assembly" id="{@name}">
       <header>
-         <h4 id="{$metaschema-code}_{@name}" class="usa-color-text usa-color-primary-alt-darkest usa-color-text-white">
+         <h4 id="{$metaschema-code}_{@name}" class="usa-color-text usa-color-primary-alt-lightest">
             <xsl:apply-templates select="$definition/formal-name" mode="inline"/>: <xsl:apply-templates
                select="@name"/> object</h4>
          
@@ -186,9 +202,20 @@
             />
          </xsl:call-template>-->
          </xsl:for-each>
+         <xsl:for-each-group select="key('references',@name)/ancestor::model/parent::*" group-by="true()">
+            <p><xsl:text>This object appears as a property on: </xsl:text>
+               <xsl:for-each select="current-group()">
+                  <xsl:if test="not(position() eq 1)">, </xsl:if>
+                  <xsl:apply-templates select="." mode="link-here"/>               
+            </xsl:for-each>.</p>
+         </xsl:for-each-group>
       </div>
    </xsl:template>
 
+   <xsl:template match="define-assembly | define-field | define-flag" mode="link-here">
+      <a href="#{ @name }"><xsl:value-of select="@name"/></a>
+   </xsl:template>
+   
    <xsl:template match="@name | @named">
       <code>
          <xsl:value-of select="."/>
@@ -253,7 +280,7 @@
       </div>
    </xsl:template>
 
-   <xsl:template match="assembly | field | assemblies | fields">
+   <xsl:template match="assembly | field">
       <li>
          <!--<xsl:text>A</xsl:text>
          <xsl:if test="not(translate(substring(@named, 1, 1), 'AEIOUaeiuo', ''))">n</xsl:if>
@@ -263,15 +290,32 @@
          </a>
          <xsl:text expand-text="true"> object </xsl:text>
          <xsl:apply-templates select="." mode="cardinality"/>
-
+         
          <xsl:apply-templates select="description" mode="model"/>
          <xsl:apply-templates select="remarks" mode="model"/>
       </li>
    </xsl:template>
-
-   <xsl:template match="*" mode="cardinality"> (<i>zero or one</i>)</xsl:template>
-   <xsl:template match="assemblies | fields" mode="cardinality"> (<i>zero or more</i>)</xsl:template>   
-   <xsl:template match="*[@required = 'yes']" mode="cardinality"> (<i>one</i>)</xsl:template>
+   
+   <xsl:template match="assemblies | fields">
+      <xsl:variable name="definition" select="key('definitions',@named)"/>
+      <li>An array labelled
+         <!--<xsl:text>A</xsl:text>
+         <xsl:if test="not(translate(substring(@named, 1, 1), 'AEIOUaeiuo', ''))">n</xsl:if>
+         <xsl:text> </xsl:text>-->
+         <b><xsl:value-of select="@group-as"/></b>, containing
+         <a href="#{@named}">
+            <xsl:apply-templates select="@named"/>
+         </a>
+         <xsl:text expand-text="true"> objects </xsl:text>
+         <xsl:apply-templates select="." mode="cardinality"/>
+         
+         <xsl:apply-templates select="description" mode="model"/>
+         <xsl:apply-templates select="remarks" mode="model"/>
+      </li>
+   </xsl:template>
+   
+   <xsl:template match="*" mode="cardinality"> (<i>optional</i>)</xsl:template>
+   <xsl:template match="*[@required = 'yes']" mode="cardinality"> (<i>required</i>)</xsl:template>
    <!-- 'assemblies' and 'fields' may not be marked @required so no 'one or more' -->
 
    <xsl:template match="example[empty(* except (description | remarks))]"/>
