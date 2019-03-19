@@ -26,14 +26,14 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 collections_dir: content/documentation/schemas/
 
 collections:
-    oscal-catalog-xml:
-      title: Catalog XML
-    oscal-profile-xml:
-      title: Profile XML
-    oscal-catalog-json:
-      title: Catalog JSON
-    oscal-profile-json:
-      title: Profile JSON
+  oscal-catalog-xml:
+    title: Catalog XML
+  oscal-catalog-json:
+    title: Catalog JSON
+  oscal-profile-xml:
+    title: Profile XML
+  oscal-profile-json:
+    title: Profile JSON
 
 markdown: kramdown
 highlighter: rouge
