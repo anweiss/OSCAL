@@ -1,5 +1,5 @@
 ---
-title: Relations
+title: Relations to Industry Standards
 description: Relations
 permalink: /learnmore/relations/
 layout: post
