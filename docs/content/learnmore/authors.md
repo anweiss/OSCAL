@@ -1,12 +1,12 @@
 ---
-title: Authors
+title: Authors of Standards and Guidelines
 description: Authors
 permalink: /learnmore/authors/
 
 layout: post
 ---
 
-**Who: Cyber security policy authors who set requirements for implementation of cyber security programs within their organization or agency**
+**Who: Systems security policy professionals who set requirements for implementation of cyber security programs within their organizations and agencies**
 
 OSCAL provides a standard solution for building security profiles that set the expectations for implementation within the program and associated information systems
 
