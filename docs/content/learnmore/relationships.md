@@ -11,7 +11,7 @@ What are the specific standards we seek to enable? There are numerous encoding s
 
 Yet to the systems security professional all these are merely technical complexities, and the real *standards* with which we are concerned are the specifications, guidelines and regulatory frameworks that define and describe practice in the systems security arena: NIST SP800-53, ISO 27001/2, FedRAMP, **NEEDMOREEXAMPLESHERE ...** . Typically, these present us with complex and densely interconnected webs of information, which must be managed on multiple of levels of scale at once, using tools not designed for the job. We know this information should be machinable, but we have no way of expressing and managing it such that this machining can happen.
 
-The approach OSCAL takes to the problem is to *enable* the machine-ready handling of this second set of standards with a catalyst technology -=- a set of lightweight models already tested and fit for use -- which will, over the longer term, enable industry to develop its own machinable tools for handling this proliferation of information, not excluding its continuing integration with the first set of standards, which constitute the infrastructure of today's and tomorrow's platforms.
+The approach OSCAL takes to the problem is to *enable* the machine-ready handling of this second set of standards with a catalyst technology -- a set of lightweight models already tested and fit for use -- which will, over the longer term, enable industry to develop its own machinable tools for handling this proliferation of information, not excluding its continuing integration with the first set of standards, which constitute the infrastructure of today's and tomorrow's platforms.
 
 ## OSCAL in relation to other document encoding formats
 
