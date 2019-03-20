@@ -22,4 +22,4 @@ OSCAL provides a standard solution for building security profiles that set the e
 
 ## Contact
 
-To learn more about OSCAL, [contact us](contact)!
+To learn more about OSCAL, [contact us](contact).
