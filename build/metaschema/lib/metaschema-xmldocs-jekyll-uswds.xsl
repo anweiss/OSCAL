@@ -314,6 +314,8 @@
                aria-controls="{ ../@name }_example{$n}_xml">
                <xsl:text>Example</xsl:text>
             <xsl:for-each select="description">: <xsl:apply-templates/></xsl:for-each></button>
+            <!--<button class="usa-accordion-button" aria-expanded="true"
+               aria-controls="{ ../@name }_example{$n}_xml">XML</button>-->
             <div id="{ ../@name }_example{$n}_xml" class="usa-accordion-content">
                <xsl:text>&#xA;{% highlight xml %}</xsl:text>
                <xsl:apply-templates select="*" mode="as-example"/>
