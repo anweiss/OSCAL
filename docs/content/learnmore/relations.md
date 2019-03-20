@@ -1,17 +1,17 @@
 ---
-title: Relationships
-description: Relationships
-permalink: /learnmore/relationships/
+title: Relations
+description: Relations
+permalink: /learnmore/relations/
 layout: post
 ---
 
 As a "standard of standards" OSCAL might also be called a "standard for standards".
 
-What are the specific standards we seek to enable? There are numerous encoding standards already available at many levels of the stack all the way to the top -- word processor standards and platform-independent document exchange formats. The problem is indeed the proliferation of these technologies: for office documents (word processors and spreadsheets) we have (confusingly) both ISO/IEC 29500 and ISO/IEC 26300 (the nominal *Open Office* and *Open Document* formats); while for data exchange across application boundaries we have XML-based formats such as OASIS DITA, NISO/NLM JATS, or NISO STS, and above all HTML/CSS (the web stack) and their related application formats and serializations such as JSON and Markdown with its variants.
+What are the specific standards we seek to enable? There are numerous encoding standards already available at many levels of the stack all the way to the top -- word processor standards and platform-independent document exchange formats. The problem is indeed in the proliferation of these technologies: for office documents (word processors and spreadsheets) we have (confusingly) both ISO/IEC 29500 and ISO/IEC 26300 (the nominal *Open Office* and *Open Document* formats); while for data exchange across application boundaries we have XML-based formats such as OASIS DITA, NISO/NLM JATS, or NISO STS, and above all HTML/CSS (the web stack) and their related application formats and serializations such as JSON and Markdown with its variants.
 
 Yet to the systems security professional all these are merely technical complexities, and the real *standards* with which we are concerned are the specifications, guidelines and regulatory frameworks that define and describe practice in the systems security arena: NIST SP800-53, ISO 27001/2, FedRAMP, **NEEDMOREEXAMPLESHERE ...** . Typically, these present us with complex and densely interconnected webs of information, which must be managed on multiple of levels of scale at once, using tools not designed for the job. We know this information should be machinable, but we have no way of expressing and managing it such that this machining can happen.
 
-The approach OSCAL takes to the problem is to *enable* the machine-ready handling of this second set of standards with a catalyst technology -- a set of lightweight models already tested and fit for use -- which will, over the longer term, enable industry to develop its own machinable tools for handling this proliferation of information, not excluding its continuing integration with the first set of standards, which constitute the infrastructure of today's and tomorrow's platforms.
+The approach OSCAL takes to the problem is to *enable* the machine-ready handling of this second set of standards with a catalyst technology -- a set of lightweight models already tested and fit for use -- which will, over the longer term, enable industry to develop its own common toolkit for handling this proliferation of information, not excluding its continuing integration with the first set of standards, which constitute the infrastructure of today's and tomorrow's platforms.
 
 ## OSCAL in relation to other document encoding formats
 
