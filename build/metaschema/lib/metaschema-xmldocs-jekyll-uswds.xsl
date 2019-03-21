@@ -307,23 +307,42 @@
    <xsl:template match="example[empty(* except (description | remarks))]"/>
 
    <xsl:template match="example">
-      <xsl:variable name="n" select="count(. | preceding-sibling::example)"/>
+      <xsl:variable name="example-no" select="'example' || count(.|preceding-sibling::example)"/>
       <ul class="usa-accordion-bordered">
          <li>
             <button class="usa-accordion-button" aria-expanded="true"
-               aria-controls="{ ../@name }_example{$n}_xml">
+               aria-controls="{ ../@name }_{$example-no}_xml">
                <xsl:text>Example</xsl:text>
             <xsl:for-each select="description">: <xsl:apply-templates/></xsl:for-each></button>
             <!--<button class="usa-accordion-button" aria-expanded="true"
-               aria-controls="{ ../@name }_example{$n}_xml">XML</button>-->
-            <div id="{ ../@name }_example{$n}_xml" class="usa-accordion-content">
-               <xsl:text>&#xA;{% highlight xml %}</xsl:text>
-               <xsl:apply-templates select="*" mode="as-example"/>
-               <xsl:text>&#xA;{% endhighlight %}&#xA;</xsl:text>
+               aria-controls="{ ../@name }_{$example-no}_xml">XML</button>-->
+            <!--{% capture <xsl:value-of select="$example-no" disable-output-escaping="yes"/> %}<xsl:apply-templates select="*" mode="as-example"/>{% endcapture %}-->
+            <div id="{ ../@name }_{ $example-no }_xml" class="usa-accordion-content">
+               <!--<xsl:text>&#xA;{% highlight xml %}</xsl:text>-->
+               <!--{{ <xsl:value-of select="$example-no"/> }}-->
+               <pre>
+                 <xsl:apply-templates select="*" mode="as-example"/>
+                  </pre>
+               <!--<xsl:text>&#xA;{% endhighlight %}&#xA;</xsl:text>-->
                <xsl:apply-templates select="remarks"/>
             </div>
          </li>
      </ul>
+      <!--<div>
+         <h3>
+            <xsl:text>Example</xsl:text>
+            <xsl:for-each select="description">: <xsl:apply-templates/></xsl:for-each></h3>
+         <!-\-<button class="usa-accordion-button" aria-expanded="true"
+            aria-controls="{ ../@name }_{$example-no}_xml">XML</button>-\->
+         <!-\-{% capture <xsl:value-of select="$example-no" disable-output-escaping="yes"/> %}<xsl:apply-templates select="*" mode="as-example"/>{% endcapture %}-\->
+         <div id="{ ../@name }_{ $example-no }_xml">
+            <xsl:text>&#xA;{% highlight xml %}</xsl:text>
+            <!-\-{{ <xsl:value-of select="$example-no"/> }}-\->
+            <xsl:apply-templates select="*" mode="as-example"/>
+            <xsl:text>&#xA;{% endhighlight %}&#xA;</xsl:text>
+            <xsl:apply-templates select="remarks"/>
+         </div>
+      </div>-->
    </xsl:template>
 
    <xsl:template match="*" mode="serialize">
