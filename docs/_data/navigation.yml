@@ -54,7 +54,7 @@ primary:
   #- text: Walkthrough
   #  href: /walkthrough/
   - text: Community
-    href: /getinvolved/
+    href: /community/
   # - text: Navigation section
   #   links:
   #     - text: Demo link A
@@ -116,6 +116,16 @@ components:
 #   # - text: Sidenav External link
 #   #   href: https://18f.gsa.gov
 #   external: true
+
+community:
+  - text: Security Professionals
+    href: /community/securitypros/
+  - text: Assessors
+    href: /community/assessors/
+  - text: Tool Developers
+    href: /community/tooldevelopers/
+  - text: Policy Authors
+    href: /community/contentcreators/  
 
 examples:
   - text: Examples
