@@ -4,7 +4,6 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xpath-default-namespace="http://csrc.nist.gov/ns/oscal/metaschema/1.0"
     version="3.0"
-    
     xmlns:XSLT="http://csrc.nist.gov/ns/oscal/metaschema/xslt-alias">
     
 <!-- Purpose: Produce an XSLT supporting production of metaschema documentation.

@@ -40,7 +40,6 @@ CONV_JSON="java -jar $SAXON -s:$METASCHEMAXML -o:$CONVERSION_DIR/$BASENAME-json-
 
 DOCS_XSLT="java -jar $SAXON -s:$METASCHEMAXML -o:$LIBDIR/temp/$BASENAME-xml-docs-md.xsl -xsl:$LIBDIR/xml/produce-and-run-documentor.xsl"
 
-
 # Now ...
 echo
 echo Producing JSON and XML schemas and tools from $METASCHEMAXML ...
@@ -54,7 +53,6 @@ $CONV_XML
 echo _ Made XML-to-JSON converter ______ $CONVERSION_DIR/$BASENAME-xml-converter.xsl
 $CONV_JSON
 echo _ Made JSON-to-XML converter ______ $CONVERSION_DIR/$BASENAME-json-converter.xsl
-
 
 $DOCS_XSLT
 echo _ Made Metaschema documentation _ $DOCSDIR/${BASENAME}_xml.md $DOCSDIR/json_${BASENAME}_json.md
