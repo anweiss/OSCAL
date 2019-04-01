@@ -3,11 +3,12 @@ title: Relations to Industry Standards
 description: Relations
 permalink: /learnmore/relations/
 layout: post
+sidenav: learnmore
 ---
 
 Professionals working in the security domain are already familiar with numerous standards, specifications, guidelines and regulatory frameworks that define and describe practice in the systems security arena: NIST SP800-53, ISO 27001/2, FedRAMP, FISMA/FIPS, HIPAA and others. Typically, these documents present us with complex and densely interconnected webs of information, which must be managed on multiple of levels of scale at once, using tools not designed for the job. We know this information should be machinable, but we have no way of expressing and managing it such that this machining can happen.
 
-The approach OSCAL takes to the problem is to *enable* the machine-ready handling of these standards with a catalyst technology -- a set of lightweight models already tested and fit for use -- which will, over the longer term, enable industry to develop its own common toolkit for handling this proliferation of information, not excluding its continuing integration with the documentary encoding standards that constitute the infrastructure of today's and tomorrow's platforms.
+The approach OSCAL takes to the problem is to *enable* the machine-ready handling of these standards with a catalyst technology -- a set of lightweight models already tested and fit for use -- which will, over the longer term, enable industry to develop its own common toolkit for handling this proliferation of information, not excluding its continuing integration with the documentary encoding standards that constitute the infrastructure of today's and tomorrow's platforms. OSCAL aims to be lightweight and easy to adopt and use. But it also serves as the foundation for further development and integration of information systems at all levels -- including the capability to work with other information exchange standards whenever useful and appropriate. 
 
 ## How OSCAL relates to other document encoding formats
 

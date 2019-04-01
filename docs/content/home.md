@@ -8,7 +8,7 @@ hero:
   image: /assets/img/security-hero4.jpg
   callout:
     alt: "OSCAL:"
-    text: More Information Less Paper
+    text: Documentary Foundations for Systems Security
   button:
     href: /getinvolved/
     text: Get Involved

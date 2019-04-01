@@ -2,7 +2,7 @@
 title: Scenarios
 description: Scenarios
 permalink: /resources/scenarios/
-
+sidenav: resources
 layout: post
 ---
 

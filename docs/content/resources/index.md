@@ -2,7 +2,7 @@
 title: Resources
 description: Resources
 permalink: /resources/
-
+sidenav: resources
 layout: post
 ---
 
