@@ -16,11 +16,11 @@ model: oscal-catalog-xml
       <p class="p">Because properties are often used as selectors or identifiers for OSCAL operations, their
         values can be expected frequently to be normalized (e.g., with respect to whitespace) in
         use; however, this is application defined.</p>
-      <p class="p">For singletons (that is, the only element among siblings with its <a href="#class">class</a>),
+      <p class="p">For singletons (that is, the only element among siblings with its <code>class</code>),
         properties are especially useful as proxies (unique identifiers) for their controls, such
         that controls may be returned one for one on queries for properties (name and value). The
         robustness of such queries can be ensured by appropriate property declarations (as
         singletons and as identifiers); cf <code>declare-prop</code> in the declarations model
         (which also supports other constraints over property values).</p>
     </div><ul class="usa-accordion-bordered"><li><button class="usa-accordion-button" aria-expanded="true" aria-controls="prop_example1_xml">Example</button><div id="prop_example1_xml" class="usa-accordion-content"><pre>
-&lt;prop class="name"&gt;A1&lt;/prop&gt;</pre></div></li></ul><p>This element appears inside: <a href="#group">group</a>, <a href="#control">control</a>, <a href="#subcontrol">subcontrol</a>, <a href="#part">part</a>.</p></div>
+&lt;prop class="name"&gt;A1&lt;/prop&gt;</pre></div></li></ul><p>This element appears inside: <a href="#metadata">metadata</a>, <a href="#resource">resource</a>, <a href="#group">group</a>, <a href="#control">control</a>, <a href="#subcontrol">subcontrol</a>, <a href="#part">part</a>.</p></div>
