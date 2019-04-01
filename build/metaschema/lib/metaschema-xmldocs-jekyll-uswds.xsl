@@ -34,6 +34,8 @@
    <xsl:key name="references" match="flag"             use="@name"/>
    <xsl:key name="references" match="field | assembly | fields | assemblies" use="@named"/>
    
+   <xsl:param name="root-name" select="/METASCHEMA/@root"/>
+   
    <xsl:template match="/">
       <html>
          <head>
@@ -192,7 +194,7 @@
          <xsl:call-template name="cross-links"/>
       </header>
          <!-- No mention of @group-as on XML side       -->
-         <xsl:if test="@name = ../@root">
+         <xsl:if test="@name = $root-name">
             <h5>
                <code xsl:expand-text="true">{ @name }</code> is the root (containing) element of
                this schema. </h5>

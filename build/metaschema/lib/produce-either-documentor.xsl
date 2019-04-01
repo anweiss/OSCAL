@@ -104,6 +104,9 @@
         <XSLT:preserve-space elements="*"/>
         
         <XSLT:variable name="home" select="/"/>
+        <XSLT:param name="root-name" select="/METASCHEMA/@root"/>
+        
+        
         <XSLT:key name="declarations-by-name"
             match="define-field | define-assembly | define-flag" use="@name"/>
         

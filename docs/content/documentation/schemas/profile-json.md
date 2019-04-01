@@ -5,5 +5,5 @@ permalink: /docs/schemas/oscal-profile-json/
 layout: schemas
 sidenav: schemas
 subnav: true
-schema: oscal-profile-json
+model: oscal-profile-json
 ---

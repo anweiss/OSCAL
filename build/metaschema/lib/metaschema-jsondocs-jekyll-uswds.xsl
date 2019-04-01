@@ -32,6 +32,8 @@
    <xsl:key name="references" match="flag"             use="@name"/>
    <xsl:key name="references" match="field | assembly | fields | assemblies" use="@named"/>
    
+   <xsl:param name="root-name" select="/METASCHEMA/@root"/>
+   
    <xsl:template match="/">
       <html>
          <head>
@@ -178,36 +180,37 @@
       <xsl:variable name="definition" select="if (exists($imported)) then key('definitions',@name,$imported) else ."/>
       
       <div class="definition define-assembly" id="{@name}">
-      <header>
-         <h4 id="{$metaschema-code}_{@name}" class="usa-color-text usa-color-primary-alt-lightest">
-            <xsl:apply-templates select="$definition/formal-name" mode="inline"/>: <xsl:apply-templates
-               select="@name"/> object</h4>
-         
-         <xsl:call-template name="cross-links"/>
-      </header>
+         <header>
+            <h4 id="{$metaschema-code}_{@name}"
+               class="usa-color-text usa-color-primary-alt-lightest">
+               <xsl:apply-templates select="$definition/formal-name" mode="inline"/>:
+                  <xsl:apply-templates select="@name"/> object</h4>
+   <xsl:call-template name="cross-links"/>
+         </header>
          <!-- No mention of @group-as on XML side       -->
-         <xsl:if test="@name = ../@root">
+         <xsl:if test="@name = $root-name">
             <h5>
-               <code xsl:expand-text="true">{ @name }</code> is the root (containing) object of
-               this schema. </h5>
+               <code xsl:expand-text="true">{ @name }</code> is the root (containing) object of this
+               schema. </h5>
          </xsl:if>
          <xsl:for-each select="$definition">
-         <xsl:apply-templates select="formal-name | description"/>
-         <xsl:apply-templates select="model"/>
-         <xsl:apply-templates select="remarks"/>
-         <xsl:apply-templates select="example"/>
-         <!--<xsl:call-template name="uswds-table">
+            <xsl:apply-templates select="formal-name | description"/>
+            <xsl:apply-templates select="model"/>
+            <xsl:apply-templates select="remarks"/>
+            <xsl:apply-templates select="example"/>
+            <!--<xsl:call-template name="uswds-table">
             <xsl:with-param name="property-set"
                select="flag | (model//* except model//(choice | description/descendant-or-self::* | remarks/descendant-or-self::*))"
             />
          </xsl:call-template>-->
          </xsl:for-each>
-         <xsl:for-each-group select="key('references',@name)/ancestor::model/parent::*" group-by="true()">
+         <xsl:for-each-group select="key('references', @name)/ancestor::model/parent::*"
+            group-by="true()">
             <p><xsl:text>This object appears as a property on: </xsl:text>
                <xsl:for-each select="current-group()">
                   <xsl:if test="not(position() eq 1)">, </xsl:if>
-                  <xsl:apply-templates select="." mode="link-here"/>               
-            </xsl:for-each>.</p>
+                  <xsl:apply-templates select="." mode="link-here"/>
+               </xsl:for-each>.</p>
          </xsl:for-each-group>
       </div>
    </xsl:template>
