@@ -103,6 +103,15 @@
     <xsl:text>)</xsl:text>
   </xsl:template>
   
+  <xsl:template match="a" mode="md">
+    <xsl:text>[</xsl:text>
+    <xsl:value-of select="replace(.,'&lt;','&amp;lt;')"/>
+    <xsl:text>]</xsl:text>
+    <xsl:text>(</xsl:text>
+    <xsl:value-of select="@href"/>
+    <xsl:text>)</xsl:text>
+  </xsl:template>
+  
   <xsl:template match="pre" mode="md">
     <xsl:text xml:space="preserve">&#xA;&#xA;```</xsl:text>
     <xsl:value-of select="@class[.=('xml','json')]"/>

@@ -12,7 +12,7 @@
 {% for schema_element in collection.docs %}
 {% if schema_element.position != 0 %}
 <li>
-  <a href="#{{ schema_element.model }}_{{ schema_element.tagname }}"><code>{{ schema_element.tagname }}{% if schema_element.root %} (root element){% endif %}</code></a>
+  <a href="#{{ schema_element.model }}_{{ schema_element.tagname }}"><code>{{ schema_element.tagname }}{% if schema_element.root %} (root){% endif %}</code></a>
 </li>
 {% endif %}
 {% endfor %}

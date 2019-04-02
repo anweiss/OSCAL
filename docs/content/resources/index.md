@@ -2,18 +2,21 @@
 title: Resources
 description: Resources
 permalink: /resources/
-
+sidenav: resources
 layout: post
 ---
 
-## Useful Links
+## Official OSCAL
 
 * [GitHub Repository for OSCAL](https://github.com/usnistgov/OSCAL)
+* [NIST OSCAL Tools GitHub Repository](https://github.com/usnistgov/OSCAL-tools)
 * [Computer Security Resource Center: OSCAL](https://csrc.nist.gov/Projects/Open-Security-Controls-Assessment-Language)
 
 ## Tools
 
-* [OSCALkit - Converts XML -> JSON (and vice versa)](https://github.com/docker/oscalkit)
+In addition to tools in repositories linked above, we are aware of a number of OSCAL tools under development on platforms including Java, XML/XSLT/XQuery, Go (Golang), PHP, Ruby and C#. These can frequently be found by traversing to forks from our repos. Please feel free to do this -- and let us know if you wish for your tool or repository to be listed here.
+
+* [OSCALkit - Validates OSCAL and converts XML -> JSON (and vice versa)](https://github.com/docker/oscalkit) (Go)
 
 ## Videos and Presentations
 

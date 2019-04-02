@@ -2,7 +2,7 @@
 title: Case Studies
 description: Case Studies
 permalink: /resources/casestudies/
-
+sidenav: resources
 layout: post
 ---
 
