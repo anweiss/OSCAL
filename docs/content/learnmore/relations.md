@@ -4,6 +4,7 @@ description: Relations
 permalink: /learnmore/relations/
 layout: post
 sidenav: learnmore
+sticky_sidenav: true
 ---
 
 Professionals working in the security domain are already familiar with numerous standards, specifications, guidelines and regulatory frameworks that define and describe practice in the systems security arena: NIST SP800-53, ISO 27001/2, FedRAMP, FISMA/FIPS, HIPAA and others. Typically, these documents present us with complex and densely interconnected webs of information, which must be managed on multiple of levels of scale at once, using tools not designed for the job. We know this information should be machinable, but we have no way of expressing and managing it such that this machining can happen.

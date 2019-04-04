@@ -3,6 +3,7 @@ title: Case Studies
 description: Case Studies
 permalink: /resources/casestudies/
 sidenav: resources
+sticky_sidenav: true
 layout: post
 ---
 

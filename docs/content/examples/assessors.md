@@ -4,10 +4,9 @@ description: Examples for Assessors
 permalink: /examples/assessors/
 
 layout: post
-sidenav: examples
-subnav:
-  - text: FedRAMP
-    href: '#fedramp'
+sidenav: resources
+sticky_sidenav: true
+subnav: examples
 ---
 
 ## FedRAMP

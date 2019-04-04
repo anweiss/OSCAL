@@ -4,6 +4,7 @@ description: Concepts
 permalink: /docs/
 layout: page
 sidenav: documentation
+sticky_sidenav: true
 ---
 
 Three key OSCAL concepts underlie the architecture:

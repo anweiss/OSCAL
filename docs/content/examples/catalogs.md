@@ -4,10 +4,9 @@ description: OSCAL Catalog Examples
 permalink: /examples/catalogs/
 
 layout: post
-sidenav: examples
-subnav:
-  - text: NIST 800-53
-    href: '#nist-800-53'
+sidenav: resources
+sticky_sidenav: true
+subnav: examples
 ---
 
 ## NIST 800-53

@@ -4,6 +4,7 @@ description: Learn more about OSCAL
 permalink: /learnmore/
 layout: post
 sidenav: learnmore
+sticky_sidenav: true
 ---
 
 ## Background

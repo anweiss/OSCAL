@@ -5,6 +5,7 @@ permalink: /docs/components/profile/
 
 layout: post
 sidenav: components
+sticky_sidenav: true
 ---
 
 An OSCAL profile is a set of security requirements, where meeting each requirement necessitates implementing one or more security controls. Commonly referred to as a baseline or overlay, examples of profiles include the control baselines in NIST SP 800-53, the FedRAMP baselines, and the PCI DSS requirements.

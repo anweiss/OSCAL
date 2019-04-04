@@ -4,6 +4,7 @@ description: OSCAL Examples
 permalink: /examples/
 
 layout: post
-sidenav: examples
-subnav: true
+sidenav: resources
+sticky_sidenav: true
+subnav: examples
 ---

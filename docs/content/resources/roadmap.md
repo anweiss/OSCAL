@@ -3,6 +3,7 @@ title: Roadmap
 description: OSCAL Roadmap
 permalink: /resources/roadmap/
 sidenav: resources
+sticky_sidenav: true
 layout: post
 ---
 

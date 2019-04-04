@@ -4,12 +4,9 @@ description: OSCAL Implementation Examples
 permalink: /examples/implementations/
 
 layout: post
-sidenav: examples
-subnav:
-  - text: System Security Plan
-    href: '#system-security-plan'
-  - text: Component Definition
-    href: '#component-definition'
+sidenav: resources
+sticky_sidenav: true
+subnav: true
 ---
 
 ## System Security Plan

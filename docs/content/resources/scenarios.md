@@ -3,6 +3,7 @@ title: Scenarios
 description: Scenarios
 permalink: /resources/scenarios/
 sidenav: resources
+sticky_sidenav: true
 layout: post
 ---
 

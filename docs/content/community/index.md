@@ -4,6 +4,7 @@ description: Get Involved
 permalink: /community/
 layout: post
 sidenav: community
+sticky_sidenav: true
 ---
 
 ## Welcome to the OSCAL Community

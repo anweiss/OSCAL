@@ -20,6 +20,8 @@ primary:
     href: /resources/
   - text: Documentation
     href: /docs/
+  - text: Schema Reference
+    href: /docs/schemas/
   - text: Community
     href: /community/
 # - text: Walkthrough
@@ -49,70 +51,37 @@ secondary:
     href: /community/
   - text: Contact
     href: /contact/
-#  - text: GitHub Repo
-#   href: https://github.com/usnistgov/OSCAL
-#   external: true
 
 resources:
-      - text: Resourcees
-        href: /resources/
-      - text: Roadmap
-        href: /resources/roadmap/
-      - text: Case Studies
-        href: /resources/casestudies/
-      - text: Examples
-        href: /examples/
-      - text: Scenarios
-        href: /resources/scenarios/
-      - text: GitHub Repo
-        href: https://github.com/usnistgov/OSCAL
-        external: true
-
-
+  - text: Resourcees
+    href: /resources/
+  - text: Roadmap
+    href: /resources/roadmap/
+  - text: Case Studies
+    href: /resources/casestudies/
+  - text: Examples
+    href: /examples/
+  - text: Scenarios
+    href: /resources/scenarios/
+  - text: GitHub Repo
+    href: https://github.com/usnistgov/OSCAL
+    external: true
 
 documentation:
-      - text: Concepts
-        href: /docs/
-      - text: Components
-        href: /docs/components/
-      - text: Schema Reference
-        href: /docs/schemas/
-
-components:
-  # - text: Overview
-  #   href: /docs/
-  # - text: Concepts
-  #   href: /docs/concepts/
-  #   # links:
-  #   #   - text: Demo link A
-  #   #     href: /two/a/
-  #   #   - text: Demo link B
-  #   #     href: /two/b/
-  #   #   - text: Demo link C
-  #   #     href: /two/c/
+  - text: Concepts
+    href: /docs/
   - text: Components
     href: /docs/components/
-  - text: Catalog
-    href: /docs/components/catalog/
-  - text: Profile
-    href: /docs/components/profile/
-#   # - text: Sidenav External link
-#   #   href: https://18f.gsa.gov
-#   external: true
+  - text: Schema Reference
+    href: /docs/schemas/
 
 schemas:
   - text: Schema Reference
     href: /docs/schemas/
-# - text: Catalog Schema
-  - text: Catalog XML Schema
+  - text: Catalog Schema
     href: /docs/schemas/oscal-catalog-xml/
-  - text: Catalog JSON Schema
-    href: /docs/schemas/oscal-catalog-json/
-# - text: Profile Schema
-  - text: Profile XML Schema
+  - text: Profile Schema
     href: /docs/schemas/oscal-profile-xml/
-  - text: Profile JSON Schema
-    href: /docs/schemas/oscal-profile-json/
   - text: OSCAL Prose Model
     href: /docs/schemas/oscal-prose/
 
@@ -126,7 +95,7 @@ community:
   - text: Tool Developers
     href: /community/tooldevelopers/
   - text: Policy Authors
-    href: /community/contentcreators/  
+    href: /community/contentcreators/
 
 learnmore:
   - text: Learn More
@@ -135,8 +104,6 @@ learnmore:
     href: /learnmore/relations/
 
 examples:
-  - text: Examples
-    href: /examples/
   - text: For Assessors
     href: /examples/assessors/
   - text: For Security Professionals

@@ -4,7 +4,7 @@ description: Examples for Tool Vendors
 permalink: /examples/toolvendors/
 
 layout: post
-sidenav: examples
+sidenav: resources
+sticky_sidenav: true
 subnav: true
 ---
-
