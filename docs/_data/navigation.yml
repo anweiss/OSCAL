@@ -105,13 +105,13 @@ learnmore:
 
 examples:
   - text: For Assessors
-    href: /examples/assessors/
+    href: /resources/examples/assessors/
   - text: For Security Professionals
-    href: /examples/securitypros/
+    href: /resources/examples/securitypros/
   - text: For Tool Vendors
-    href: /examples/toolvendors/
+    href: /resources/examples/toolvendors/
   - text: For OSCAL Content Authors
-    href: /examples/authors/
+    href: /resources/examples/authors/
 
 footer:
   - text: Documentation
