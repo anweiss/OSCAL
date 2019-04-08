@@ -3,7 +3,7 @@
     {% for link in include.links %}
       {% assign _href = link.href %}
       {% assign _current = false %}
-      {% if link.href == page.url or link.href == page.permalink %}
+      {% if link.href == page.url or link.href == page.permalink or page.model contains link.model %}
         {% assign _current = true %}
       {% endif %}
     <li>
@@ -12,7 +12,7 @@
          {% if link.class %}class="{{ link.class }}" {% endif %} >
          {{ link.text }}
       </a>
-      {% if _current and page.subnav %}
+      {% if (_current and page.subnav) or page.subnav == 'examples' %}
       <ul class="usa-sidenav-sub_list">
         {% include subnav.html links=page.subnav title=page.title %}
       </ul>

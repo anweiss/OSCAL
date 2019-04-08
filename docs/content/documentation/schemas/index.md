@@ -4,6 +4,7 @@ description: OSCAL Schema Reference
 permalink: /docs/schemas/
 layout: post
 sidenav: schemas
+sticky_sidenav: true
 ---
 
 ## About the Sample Schemas

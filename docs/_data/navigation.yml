@@ -20,6 +20,11 @@ primary:
     href: /resources/
   - text: Documentation
     href: /docs/
+<<<<<<< HEAD
+=======
+  - text: Schema Reference
+    href: /docs/schemas/
+>>>>>>> 5b043b0b5cad5e5fb1d4de3d323161e4d3d51342
   - text: Community
     href: /community/
 # - text: Walkthrough
@@ -49,6 +54,7 @@ secondary:
     href: /community/
   - text: Contact
     href: /contact/
+<<<<<<< HEAD
 #  - text: GitHub Repo
 #   href: https://github.com/usnistgov/OSCAL
 #   external: true
@@ -77,28 +83,61 @@ documentation:
         href: /docs/components/
       - text: Schema Reference
         href: /docs/schemas/
+=======
 
-components:
-  # - text: Overview
-  #   href: /docs/
-  # - text: Concepts
-  #   href: /docs/concepts/
-  #   # links:
-  #   #   - text: Demo link A
-  #   #     href: /two/a/
-  #   #   - text: Demo link B
-  #   #     href: /two/b/
-  #   #   - text: Demo link C
-  #   #     href: /two/c/
+resources:
+  - text: Resourcees
+    href: /resources/
+  - text: Roadmap
+    href: /resources/roadmap/
+  - text: Case Studies
+    href: /resources/casestudies/
+  - text: Examples
+    href: /resources/examples/
+  - text: Scenarios
+    href: /resources/scenarios/
+  - text: GitHub Repo
+    href: https://github.com/usnistgov/OSCAL
+    external: true
+
+documentation:
+  - text: Concepts
+    href: /docs/
   - text: Components
     href: /docs/components/
-  - text: Catalog
-    href: /docs/components/catalog/
-  - text: Profile
-    href: /docs/components/profile/
-#   # - text: Sidenav External link
-#   #   href: https://18f.gsa.gov
-#   external: true
+  - text: Schema Reference
+    href: /docs/schemas/
+
+schemas:
+  - text: Schema Reference
+    href: /docs/schemas/
+  - text: Catalog Schema
+    href: /docs/schemas/oscal-catalog-xml/
+    model: catalog
+  - text: Profile Schema
+    href: /docs/schemas/oscal-profile-xml/
+    model: profile
+  - text: OSCAL Prose Model
+    href: /docs/schemas/oscal-prose/
+>>>>>>> 5b043b0b5cad5e5fb1d4de3d323161e4d3d51342
+
+community:
+  - text: Community
+    href: /community/
+  - text: Security Professionals
+    href: /community/securitypros/
+  - text: Assessors
+    href: /community/assessors/
+  - text: Tool Developers
+    href: /community/tooldevelopers/
+  - text: Policy Authors
+    href: /community/contentcreators/
+
+learnmore:
+  - text: Learn More
+    href: /learnmore/
+  - text: Relations to Documentary Encoding Standards
+    href: /learnmore/relations/
 
 schemas:
   - text: Schema Reference
@@ -135,16 +174,14 @@ learnmore:
     href: /learnmore/relations/
 
 examples:
-  - text: Examples
-    href: /examples/
   - text: For Assessors
-    href: /examples/assessors/
+    href: /resources/examples/assessors/
   - text: For Security Professionals
-    href: /examples/securitypros/
+    href: /resources/examples/securitypros/
   - text: For Tool Vendors
-    href: /examples/toolvendors/
+    href: /resources/examples/toolvendors/
   - text: For OSCAL Content Authors
-    href: /examples/authors/
+    href: /resources/examples/authors/
 
 footer:
   - text: Documentation

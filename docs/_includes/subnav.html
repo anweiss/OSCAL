@@ -1,7 +1,7 @@
-{% if include.title contains "Schema Reference" %}
+{% if page.layout == 'schemas' %}
 {% assign collection = site.collections | where: "label", page.model | first %}
 {% for schema_element in collection.docs %}
-{% if schema_element.position == 0 %}
+{% if schema_element.root %}
 <li>
   <a href="{{ schema_element.permalink }}">Overview</a>
 </li>
@@ -10,15 +10,21 @@
 {% endfor %}
 
 {% for schema_element in collection.docs %}
-{% if schema_element.position != 0 %}
+{% if schema_element.root != true %}
 <li>
   <a href="#{{ schema_element.model }}_{{ schema_element.tagname }}"><code>{{ schema_element.tagname }}{% if schema_element.root %} (root){% endif %}</code></a>
 </li>
 {% endif %}
 {% endfor %}
+{% elsif page.subnav == 'examples' %}
+{% for link in site.data.navigation['examples'] %}
+<li>
+  <a href="{% if link.external %}{{ link.href }}{% else %}{{ link.href }}{% endif %}" {% if link.class %}
+    class="{{ link.class }}" {% endif %}>{{ link.text }} {{ link.class }}</a>
+</li>
+{% endfor %}
 {% else %}
-
-{% for link in include.links %}
+{% for link in site.data.navigation[include.links] %}
 <li>
   <a href="{% if link.external %}{{ link.href }}{% else %}{{ link.href }}{% endif %}" {% if link.class %}
     class="{{ link.class }}" {% endif %}>{{ link.text }} {{ link.class }}</a>

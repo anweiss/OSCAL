@@ -4,7 +4,8 @@ description: Components
 permalink: /docs/components/
 
 layout: post
-sidenav: components
+sidenav: documentation
+sticky_sidenav: true
 ---
 
 The plans for OSCAL involve all the components depicted in the following diagram:

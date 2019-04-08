@@ -4,6 +4,7 @@ description: OSCAL Profile Model XML Schema Reference
 permalink: /docs/schemas/oscal-prose/
 layout: post
 sidenav: schemas
+sticky_sidenav: true
 ---
 
 ## HTML compatibility
