@@ -20,11 +20,8 @@ primary:
     href: /resources/
   - text: Documentation
     href: /docs/
-<<<<<<< HEAD
-=======
   - text: Schema Reference
     href: /docs/schemas/
->>>>>>> 5b043b0b5cad5e5fb1d4de3d323161e4d3d51342
   - text: Community
     href: /community/
 # - text: Walkthrough
@@ -54,36 +51,6 @@ secondary:
     href: /community/
   - text: Contact
     href: /contact/
-<<<<<<< HEAD
-#  - text: GitHub Repo
-#   href: https://github.com/usnistgov/OSCAL
-#   external: true
-
-resources:
-      - text: Resourcees
-        href: /resources/
-      - text: Roadmap
-        href: /resources/roadmap/
-      - text: Case Studies
-        href: /resources/casestudies/
-      - text: Examples
-        href: /examples/
-      - text: Scenarios
-        href: /resources/scenarios/
-      - text: GitHub Repo
-        href: https://github.com/usnistgov/OSCAL
-        external: true
-
-
-
-documentation:
-      - text: Concepts
-        href: /docs/
-      - text: Components
-        href: /docs/components/
-      - text: Schema Reference
-        href: /docs/schemas/
-=======
 
 resources:
   - text: Resourcees
@@ -119,7 +86,6 @@ schemas:
     model: profile
   - text: OSCAL Prose Model
     href: /docs/schemas/oscal-prose/
->>>>>>> 5b043b0b5cad5e5fb1d4de3d323161e4d3d51342
 
 community:
   - text: Community
