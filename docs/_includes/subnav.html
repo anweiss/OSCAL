@@ -16,6 +16,13 @@
 </li>
 {% endif %}
 {% endfor %}
+{% elsif page.subnav == 'examples' %}
+{% for link in site.data.navigation['examples'] %}
+<li>
+  <a href="{% if link.external %}{{ link.href }}{% else %}{{ link.href }}{% endif %}" {% if link.class %}
+    class="{{ link.class }}" {% endif %}>{{ link.text }} {{ link.class }}</a>
+</li>
+{% endfor %}
 {% else %}
 {% for link in site.data.navigation[include.links] %}
 <li>

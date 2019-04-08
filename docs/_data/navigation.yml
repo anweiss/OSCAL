@@ -60,7 +60,7 @@ resources:
   - text: Case Studies
     href: /resources/casestudies/
   - text: Examples
-    href: /examples/
+    href: /resources/examples/
   - text: Scenarios
     href: /resources/scenarios/
   - text: GitHub Repo
@@ -80,8 +80,10 @@ schemas:
     href: /docs/schemas/
   - text: Catalog Schema
     href: /docs/schemas/oscal-catalog-xml/
+    model: catalog
   - text: Profile Schema
     href: /docs/schemas/oscal-profile-xml/
+    model: profile
   - text: OSCAL Prose Model
     href: /docs/schemas/oscal-prose/
 
