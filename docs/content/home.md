@@ -5,7 +5,7 @@ permalink: /
 layout: home
 
 hero:
-  image: /assets/img/security-hero4.jpg
+  image: /assets/img/automation-hero.png
   callout:
     alt: "OSCAL:"
     text: Documentary Foundations for Systems Security
