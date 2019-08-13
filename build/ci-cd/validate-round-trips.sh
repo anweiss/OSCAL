@@ -57,7 +57,7 @@ while IFS="|" read path format model converttoformats || [[ -n "$path" ]]; do
       if [ "$format" == "xml" ]; then
         # XML -> JSON -> XML round trip testing
         # transformation from source XML to target JSON
-        converter="$working_dir/json/convert/oscal_${model}_xml-to-json-converter.xsl"
+        converter="$PWD/json/convert/oscal_${model}_xml-to-json-converter.xsl"
 
         to_json="$working_dir/roundtrip/${baseName}-to.json"
         xsl_transform "$converter" "$file" "$to_json"
@@ -75,7 +75,7 @@ while IFS="|" read path format model converttoformats || [[ -n "$path" ]]; do
         back_to_xml="$working_dir/roundtrip/${baseName}-back-to.xml"
 
         # transformation of JSON back to XML
-        converter="$working_dir/xml/convert/oscal_${model}_json-to-xml-converter.xsl"
+        converter="$PWD/xml/convert/oscal_${model}_json-to-xml-converter.xsl"
         converter_path=$(realpath --relative-to="$PWD" "$converter")
         output_path=$(realpath --relative-to="$PWD" "$back_to_xml")
 
@@ -96,7 +96,7 @@ while IFS="|" read path format model converttoformats || [[ -n "$path" ]]; do
         fi
 
         # Validate the resulting XML
-        schema="$working_dir/xml/schema/oscal_${model}_schema.xsd"
+        schema="$PWD/xml/schema/oscal_${model}_schema.xsd"
         xmllint --noout --schema "$schema" "$output_path"
         cmd_exitcode=$?
         if [ $cmd_exitcode -ne 0 ]; then

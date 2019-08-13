@@ -1,0 +1,529 @@
+on: [push, pull_request]  
+
+jobs:
+  validate-metaschema:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        saxon: [ 9.9.0-1 ]
+        json-cli: [ 0.0.1-SNAPSHOT ]
+    name: validate metaschema on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@master
+
+      - name: Install xmllint
+        run: |
+          sudo apt install libxml2-utils
+
+      - name: Install maven-dependencies
+        env:
+          SAXON_VERSION: ${{ matrix.saxon }}
+          JSON_CLI_VERSION: ${{ matrix.json-cli }}
+          CICD_DIR: build/ci-cd
+          OSCAL_REPO_DIR: $GITHUB_WORKSPACE
+          OSCAL_BUILD_DIR: build-artifacts
+          OSCAL_TOOLS_DIR: oscal_tools
+          SCHEMATRON_HOME: git-schematron
+          TERM: xterm
+        run: |
+          git clone --depth 1 https://github.com/usnistgov/oscal-tools.git "${OSCAL_TOOLS_DIR}"
+          mvn org.apache.maven.plugins:maven-dependency-plugin:2.10:get -DartifactId=Saxon-HE -DgroupId=net.sf.saxon -Dversion=$SAXON_VERSION
+          # update maven version
+          cd /opt
+          sudo wget https://www-us.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
+          sudo tar -xvzf apache-maven-3.6.0-bin.tar.gz
+          sudo mv apache-maven-3.6.0 maven
+          export M2_HOME=/opt/maven
+          export PATH=${M2_HOME}/bin:${PATH}
+          cd -
+          # now build
+          cd "${OSCAL_TOOLS_DIR}/json-cli"
+          /opt/maven/bin/mvn dependency:go-offline
+          /opt/maven/bin/mvn install
+
+      - name: Install schematron
+        env:
+          SAXON_VERSION: ${{ matrix.saxon }}
+          JSON_CLI_VERSION: ${{ matrix.json-cli }}
+          CICD_DIR: build/ci-cd
+          OSCAL_REPO_DIR: $GITHUB_WORKSPACE
+          OSCAL_BUILD_DIR: build-artifacts
+          OSCAL_TOOLS_DIR: oscal_tools
+          SCHEMATRON_HOME: git-schematron
+          TERM: xterm
+        run: |
+          git clone --depth 1 --no-checkout https://github.com/Schematron/schematron.git "$SCHEMATRON_HOME"
+          cd "$SCHEMATRON_HOME"
+          git checkout master -- trunk/schematron/code
+
+      - name: Validate metaschema instances
+        env:
+          SAXON_VERSION: ${{ matrix.saxon }}
+          JSON_CLI_VERSION: ${{ matrix.json-cli }}
+          CICD_DIR: build/ci-cd
+          OSCAL_REPO_DIR: $GITHUB_WORKSPACE
+          OSCAL_BUILD_DIR: build-artifacts
+          OSCAL_TOOLS_DIR: oscal_tools
+          SCHEMATRON_HOME: git-schematron
+          TERM: xterm
+        run: bash "$CICD_DIR/validate-metaschema.sh" "$OSCAL_BUILD_DIR"
+      
+      - name: Publish build-artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: build-artifacts
+          path: build-artifacts
+
+  generate-schema:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        saxon: [ 9.9.0-1 ]
+        json-cli: [ 0.0.1-SNAPSHOT ]
+    name: generate schema on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    needs: validate-metaschema
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@master
+
+      - name: Install maven-dependencies
+        env:
+          SAXON_VERSION: ${{ matrix.saxon }}
+          JSON_CLI_VERSION: ${{ matrix.json-cli }}
+          CICD_DIR: build/ci-cd
+          OSCAL_REPO_DIR: $GITHUB_WORKSPACE
+          OSCAL_BUILD_DIR: build-artifacts
+          OSCAL_TOOLS_DIR: oscal_tools
+          SCHEMATRON_HOME: git-schematron
+          TERM: xterm
+        run: |
+          git clone --depth 1 https://github.com/usnistgov/oscal-tools.git "${OSCAL_TOOLS_DIR}"
+          mvn org.apache.maven.plugins:maven-dependency-plugin:2.10:get -DartifactId=Saxon-HE -DgroupId=net.sf.saxon -Dversion=$SAXON_VERSION
+          # update maven version
+          cd /opt
+          sudo wget https://www-us.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
+          sudo tar -xvzf apache-maven-3.6.0-bin.tar.gz
+          sudo mv apache-maven-3.6.0 maven
+          export M2_HOME=/opt/maven
+          export PATH=${M2_HOME}/bin:${PATH}
+          cd -
+          # now build
+          cd "${OSCAL_TOOLS_DIR}/json-cli"
+          /opt/maven/bin/mvn dependency:go-offline
+          /opt/maven/bin/mvn install
+
+      - name: General OSCAL schemas
+        env:
+          SAXON_VERSION: ${{ matrix.saxon }}
+          JSON_CLI_VERSION: ${{ matrix.json-cli }}
+          CICD_DIR: build/ci-cd
+          OSCAL_REPO_DIR: $GITHUB_WORKSPACE
+          OSCAL_BUILD_DIR: build-artifacts
+          OSCAL_TOOLS_DIR: oscal_tools
+          SCHEMATRON_HOME: git-schematron
+          TERM: xterm
+        run: bash "$CICD_DIR/generate-schema.sh" "$OSCAL_BUILD_DIR"
+      
+      - name: Publish build-artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: build-artifacts
+          path: build-artifacts
+
+  generate-converters:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        saxon: [ 9.9.0-1 ]
+        json-cli: [ 0.0.1-SNAPSHOT ]
+    name: generate converters on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    needs: validate-metaschema
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@master
+
+      - name: Install maven-dependencies
+        env:
+          SAXON_VERSION: ${{ matrix.saxon }}
+          JSON_CLI_VERSION: ${{ matrix.json-cli }}
+          CICD_DIR: build/ci-cd
+          OSCAL_REPO_DIR: $GITHUB_WORKSPACE
+          OSCAL_BUILD_DIR: build-artifacts
+          OSCAL_TOOLS_DIR: oscal_tools
+          SCHEMATRON_HOME: git-schematron
+          TERM: xterm
+        run: |
+          git clone --depth 1 https://github.com/usnistgov/oscal-tools.git "${OSCAL_TOOLS_DIR}"
+          mvn org.apache.maven.plugins:maven-dependency-plugin:2.10:get -DartifactId=Saxon-HE -DgroupId=net.sf.saxon -Dversion=$SAXON_VERSION
+          # update maven version
+          cd /opt
+          sudo wget https://www-us.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
+          sudo tar -xvzf apache-maven-3.6.0-bin.tar.gz
+          sudo mv apache-maven-3.6.0 maven
+          export M2_HOME=/opt/maven
+          export PATH=${M2_HOME}/bin:${PATH}
+          cd -
+          # now build
+          cd "${OSCAL_TOOLS_DIR}/json-cli"
+          /opt/maven/bin/mvn dependency:go-offline
+          /opt/maven/bin/mvn install
+
+      - name: General OSCAL schemas
+        env:
+          SAXON_VERSION: ${{ matrix.saxon }}
+          JSON_CLI_VERSION: ${{ matrix.json-cli }}
+          CICD_DIR: build/ci-cd
+          OSCAL_REPO_DIR: $GITHUB_WORKSPACE
+          OSCAL_BUILD_DIR: build-artifacts
+          OSCAL_TOOLS_DIR: oscal_tools
+          SCHEMATRON_HOME: git-schematron
+          TERM: xterm
+        run: bash "$CICD_DIR/generate-content-converters.sh" "$OSCAL_BUILD_DIR"
+      
+      - name: Publish build-artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: build-artifacts
+          path: build-artifacts
+
+  copy-and-convert-content:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        saxon: [ 9.9.0-1 ]
+        json-cli: [ 0.0.1-SNAPSHOT ]
+    name: copy and convert content on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    needs: [ generate-converters, validate-content ]
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@master
+      
+      - name: Install maven-dependencies
+        env:
+          SAXON_VERSION: ${{ matrix.saxon }}
+          JSON_CLI_VERSION: ${{ matrix.json-cli }}
+          CICD_DIR: build/ci-cd
+          OSCAL_REPO_DIR: $GITHUB_WORKSPACE
+          OSCAL_BUILD_DIR: build-artifacts
+          OSCAL_TOOLS_DIR: oscal_tools
+          SCHEMATRON_HOME: git-schematron
+          TERM: xterm
+        run: |
+          git clone --depth 1 https://github.com/usnistgov/oscal-tools.git "${OSCAL_TOOLS_DIR}"
+          mvn org.apache.maven.plugins:maven-dependency-plugin:2.10:get -DartifactId=Saxon-HE -DgroupId=net.sf.saxon -Dversion=$SAXON_VERSION
+          # update maven version
+          cd /opt
+          sudo wget https://www-us.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
+          sudo tar -xvzf apache-maven-3.6.0-bin.tar.gz
+          sudo mv apache-maven-3.6.0 maven
+          export M2_HOME=/opt/maven
+          export PATH=${M2_HOME}/bin:${PATH}
+          cd -
+          # now build
+          cd "${OSCAL_TOOLS_DIR}/json-cli"
+          /opt/maven/bin/mvn dependency:go-offline
+          /opt/maven/bin/mvn install
+      
+      - name: Install jq
+        run: |
+          sudo apt install jq
+
+      - name: Install prettyjson
+        run: |
+          sudo npm install -g prettyjson
+      
+      - name: Generate OSCAL converters
+        env:
+          SAXON_VERSION: ${{ matrix.saxon }}
+          JSON_CLI_VERSION: ${{ matrix.json-cli }}
+          CICD_DIR: build/ci-cd
+          OSCAL_BUILD_DIR: build-artifacts
+          OSCAL_TOOLS_DIR: oscal_tools
+          SCHEMATRON_HOME: git-schematron
+          TERM: xterm
+        run: |
+          bash "$CICD_DIR/copy-and-convert-content.sh" "$OSCAL_BUILD_DIR"
+
+      - name: Publish build-artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: build-artifacts
+          path: build-artifacts
+
+  validate-markdown:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        saxon: [ 9.9.0-1 ]
+        json-cli: [ 0.0.1-SNAPSHOT ]
+    name: validate markdown on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@master
+
+      - name: Install markdown-link-check
+        run: |
+          sudo npm install -g markdown-link-check
+
+      - name: Validate content instances
+        env:
+          SAXON_VERSION: ${{ matrix.saxon }}
+          JSON_CLI_VERSION: ${{ matrix.json-cli }}
+          CICD_DIR: build/ci-cd
+          OSCAL_REPO_DIR: $GITHUB_WORKSPACE
+          OSCAL_BUILD_DIR: build-artifacts
+          OSCAL_TOOLS_DIR: oscal_tools
+          SCHEMATRON_HOME: git-schematron
+          TERM: xterm
+        run: find . -path ./docs -prune -o -name \*.md -exec markdown-link-check -q {} \;
+
+  validate-content:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        saxon: [ 9.9.0-1 ]
+        json-cli: [ 0.0.1-SNAPSHOT ]
+    name: validate content on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    needs: generate-schema
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@master
+
+      - name: Install xmllint
+        run: |
+          sudo apt install libxml2-utils
+
+      - name: Install maven-dependencies
+        env:
+          SAXON_VERSION: ${{ matrix.saxon }}
+          JSON_CLI_VERSION: ${{ matrix.json-cli }}
+          CICD_DIR: build/ci-cd
+          OSCAL_REPO_DIR: $GITHUB_WORKSPACE
+          OSCAL_BUILD_DIR: build-artifacts
+          OSCAL_TOOLS_DIR: oscal_tools
+          SCHEMATRON_HOME: git-schematron
+          TERM: xterm
+        run: |
+          git clone --depth 1 https://github.com/usnistgov/oscal-tools.git "${OSCAL_TOOLS_DIR}"
+          mvn org.apache.maven.plugins:maven-dependency-plugin:2.10:get -DartifactId=Saxon-HE -DgroupId=net.sf.saxon -Dversion=$SAXON_VERSION
+          # update maven version
+          cd /opt
+          sudo wget https://www-us.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
+          sudo tar -xvzf apache-maven-3.6.0-bin.tar.gz
+          sudo mv apache-maven-3.6.0 maven
+          export M2_HOME=/opt/maven
+          export PATH=${M2_HOME}/bin:${PATH}
+          cd -
+          # now build
+          cd "${OSCAL_TOOLS_DIR}/json-cli"
+          /opt/maven/bin/mvn dependency:go-offline
+          /opt/maven/bin/mvn install
+
+      - name: Validate content instances
+        env:
+          SAXON_VERSION: ${{ matrix.saxon }}
+          JSON_CLI_VERSION: ${{ matrix.json-cli }}
+          CICD_DIR: build/ci-cd
+          OSCAL_REPO_DIR: $GITHUB_WORKSPACE
+          OSCAL_BUILD_DIR: build-artifacts
+          OSCAL_TOOLS_DIR: oscal_tools
+          SCHEMATRON_HOME: git-schematron
+          TERM: xterm
+        run: |
+          bash "$CICD_DIR/validate-content.sh" "$OSCAL_BUILD_DIR"
+      
+  roundtrip-conversions:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        saxon: [ 9.9.0-1 ]
+        json-cli: [ 0.0.1-SNAPSHOT ]
+    name: roundtrip conversions on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    needs: [ generate-converters, validate-content ]
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@master
+
+      - name: Install maven-dependencies
+        env:
+          SAXON_VERSION: ${{ matrix.saxon }}
+          JSON_CLI_VERSION: ${{ matrix.json-cli }}
+          CICD_DIR: build/ci-cd
+          OSCAL_REPO_DIR: $GITHUB_WORKSPACE
+          OSCAL_BUILD_DIR: build-artifacts
+          OSCAL_TOOLS_DIR: oscal_tools
+          SCHEMATRON_HOME: git-schematron
+          TERM: xterm
+        run: |
+          git clone --depth 1 https://github.com/usnistgov/oscal-tools.git "${OSCAL_TOOLS_DIR}"
+          mvn org.apache.maven.plugins:maven-dependency-plugin:2.10:get -DartifactId=Saxon-HE -DgroupId=net.sf.saxon -Dversion=$SAXON_VERSION
+          # update maven version
+          cd /opt
+          sudo wget https://www-us.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
+          sudo tar -xvzf apache-maven-3.6.0-bin.tar.gz
+          sudo mv apache-maven-3.6.0 maven
+          export M2_HOME=/opt/maven
+          export PATH=${M2_HOME}/bin:${PATH}
+          cd -
+          # now build
+          cd "${OSCAL_TOOLS_DIR}/json-cli"
+          /opt/maven/bin/mvn dependency:go-offline
+          /opt/maven/bin/mvn install
+      
+      - name: Install lxml
+        run: |
+          sudo pip install lxml
+
+      - name: Install xmllint
+        run: |
+          sudo apt install libxml2-utils
+
+      - name: Generate round trip XML and JSON conversions
+        env:
+          SAXON_VERSION: ${{ matrix.saxon }}
+          JSON_CLI_VERSION: ${{ matrix.json-cli }}
+          CICD_DIR: build/ci-cd
+          OSCAL_REPO_DIR: $GITHUB_WORKSPACE
+          OSCAL_BUILD_DIR: build-artifacts
+          OSCAL_TOOLS_DIR: oscal_tools
+          SCHEMATRON_HOME: git-schematron
+          TERM: xterm
+        run: |
+          bash "$CICD_DIR/validate-round-trips.sh" "$OSCAL_BUILD_DIR"
+
+      - name: Publish build-artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: build-artifacts
+          path: build-artifacts
+
+  generate-docs:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        saxon: [ 9.9.0-1 ]
+        json-cli: [ 0.0.1-SNAPSHOT ]
+    name: generate docs on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    needs: [ validate-metaschema, generate-converters ]
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@master
+      
+      - name: Install maven-dependencies
+        env:
+          SAXON_VERSION: ${{ matrix.saxon }}
+          JSON_CLI_VERSION: ${{ matrix.json-cli }}
+          CICD_DIR: build/ci-cd
+          OSCAL_REPO_DIR: $GITHUB_WORKSPACE
+          OSCAL_BUILD_DIR: build-artifacts
+          OSCAL_TOOLS_DIR: oscal_tools
+          SCHEMATRON_HOME: git-schematron
+          TERM: xterm
+        run: |
+          git clone --depth 1 https://github.com/usnistgov/oscal-tools.git "${OSCAL_TOOLS_DIR}"
+          mvn org.apache.maven.plugins:maven-dependency-plugin:2.10:get -DartifactId=Saxon-HE -DgroupId=net.sf.saxon -Dversion=$SAXON_VERSION
+          # update maven version
+          cd /opt
+          sudo wget https://www-us.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
+          sudo tar -xvzf apache-maven-3.6.0-bin.tar.gz
+          sudo mv apache-maven-3.6.0 maven
+          export M2_HOME=/opt/maven
+          export PATH=${M2_HOME}/bin:${PATH}
+          cd -
+          # now build
+          cd "${OSCAL_TOOLS_DIR}/json-cli"
+          /opt/maven/bin/mvn dependency:go-offline
+          /opt/maven/bin/mvn install
+
+      - name: Generate schema documentation
+        env:
+          SAXON_VERSION: ${{ matrix.saxon }}
+          JSON_CLI_VERSION: ${{ matrix.json-cli }}
+          CICD_DIR: build/ci-cd
+          OSCAL_REPO_DIR: $GITHUB_WORKSPACE
+          OSCAL_BUILD_DIR: build-artifacts
+          OSCAL_TOOLS_DIR: oscal_tools
+          SCHEMATRON_HOME: git-schematron
+          TERM: xterm
+        run: |
+          bash -x "$CICD_DIR/generate-model-documentation.sh" "$OSCAL_BUILD_DIR"
+      
+      - name: Publish build-artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: build-artifacts
+          path: build-artifacts
+
+  deploy-artifacts:
+    name: deploy artifacts
+    runs-on: ubuntu-latest
+    needs: copy-and-convert-content
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@master
+
+      - name: Download artifacts
+        uses: actions/download-artifact@master
+        with:
+          name: build-artifacts
+
+      - name: Comit artifacts
+        env:
+          SAXON_VERSION: ${{ matrix.saxon }}
+          JSON_CLI_VERSION: ${{ matrix.json-cli }}
+          CICD_DIR: build/ci-cd
+          OSCAL_REPO_DIR: $GITHUB_WORKSPACE
+          OSCAL_BUILD_DIR: build-artifacts
+          OSCAL_TOOLS_DIR: oscal_tools
+          SCHEMATRON_HOME: git-schematron
+          TERM: xterm
+        run: |
+          cd "$OSCAL_REPO_DIR"
+          # Remove existing generated files
+          git rm -r --ignore-unmatch xml/convert/*.xsl
+          git rm -r --ignore-unmatch xml/schema/*.xsd
+          git rm -r --ignore-unmatch json/convert/*.xsl
+          git rm -r --ignore-unmatch json/schema/*.json
+          git rm -r --ignore-unmatch content/**/*.xml
+          git rm -r --ignore-unmatch content/**/*.json
+          git rm -r --ignore-unmatch content/**/*.yaml
+          # Copy new built files to repo
+          cd -
+          cp -r "$OSCAL_BUILD_DIR"/* "$OSCAL_REPO_DIR"
+          cd "$OSCAL_REPO_DIR"
+          # add the new files
+          git add -f --all xml
+          git add -f --all json
+          git add -f --all content
+          # check for changes
+          echo "Changed files:"
+          
+          if ! $(git diff --exit-code --name-only HEAD~1 xml json content); then
+            # Only deploy if something relevant has changed
+            # Setup deployment
+            git config user.name "Deployment Bot"
+            git commit --allow-empty -m "Deploying content [ci deploy skip]"
+            # Ensure we are deploying against the latest
+            git fetch
+            git rebase origin/master
+            # deploy
+            git push
+          else
+            echo "  No files changed"
+          fi
+      
+      - name: Publish build-artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: build-artifacts
+          path: build-artifacts
+      

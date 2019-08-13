@@ -15,7 +15,7 @@ fi
 echo "${P_INFO}Working in '${P_END}${working_dir}${P_INFO}'.${P_END}"
 
 # the stylesheet used to generate the documentation
-stylesheet="$OSCALDIR/build/metaschema/xml/produce-and-run-either-documentor.xsl"
+stylesheet="$GITHUB_WORKSPACE/build/metaschema/xml/produce-and-run-either-documentor.xsl"
 
 # the directory to generate the documentation in
 schema_doc_dir="${working_dir}/docs/content/documentation/schemas"
@@ -44,7 +44,7 @@ while IFS="|" read path gen_schema gen_converter gen_docs || [[ -n "$path" ]]; d
     extension="${filename##*.}"
     filename="${filename%.*}"
     base="${filename/_metaschema/}"
-    converter="$working_dir/json/convert/${base}_xml-to-json-converter.xsl"
+    converter="$GITHUB_WORKSPACE/json/convert/${base}_xml-to-json-converter.xsl"
 
     # Make xslt paths relative to current directory
     metaschema_path=$(realpath --relative-to="$PWD" "$metaschema")
