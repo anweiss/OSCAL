@@ -45,7 +45,7 @@ while IFS="|" read path format model converttoformats || [[ -n "$path" ]]; do
         newpath="${newpath%.*}" # strip extension
 
         dest="$working_dir/${newpath}-min.${altformat}"
-        converter="$working_dir/$altformat/convert/oscal_${model}_${format}-to-${altformat}-converter.xsl"
+        converter="$PWD/$altformat/convert/oscal_${model}_${format}-to-${altformat}-converter.xsl"
 
         echo "${P_INFO}Generating ${altformat^^} file '$dest' from '$file' using converter '$converter'.${P_END}"
         xsl_transform "$converter" "$file" "$dest"
@@ -68,7 +68,7 @@ while IFS="|" read path format model converttoformats || [[ -n "$path" ]]; do
 #          cp "${dest}.tmp" "${dest}"
 
           # validate generated file
-          schema="$working_dir/json/schema/oscal_${model}_schema.json"
+          schema="$PWD/json/schema/oscal_${model}_schema.json"
           validate_json "$schema" "$dest"
           cmd_exitcode=$?
           if [ $cmd_exitcode -ne 0 ]; then

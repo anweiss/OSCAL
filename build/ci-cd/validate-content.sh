@@ -35,7 +35,7 @@ while IFS="|" read path format model converttoformats || [ -n "$path" ]; do
 
       case $format in
       xml)
-          schema="$working_dir/xml/schema/oscal_${model}_schema.xsd"
+          schema="$PWD/xml/schema/oscal_${model}_schema.xsd"
           xmllint --noout --schema "$schema" "$file"
           cmd_exitcode=$?
           if [ $cmd_exitcode -ne 0 ]; then
@@ -44,7 +44,7 @@ while IFS="|" read path format model converttoformats || [ -n "$path" ]; do
           fi
         ;;
       json)
-          schema="$working_dir/json/schema/oscal_${model}_schema.json"
+          schema="$PWD/json/schema/oscal_${model}_schema.json"
           validate_json "$schema" "$file"
           cmd_exitcode=$?
           if [ $cmd_exitcode -ne 0 ]; then
