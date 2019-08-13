@@ -22,7 +22,7 @@ jobs:
           SAXON_VERSION: ${{ matrix.saxon }}
           JSON_CLI_VERSION: ${{ matrix.json-cli }}
           CICD_DIR: build/ci-cd
-          OSCAL_REPO_DIR: $GITHUB_WORKSPACE
+          OSCAL_REPO_DIR: "$GITHUB_WORKSPACE"
           OSCAL_BUILD_DIR: build-artifacts
           OSCAL_TOOLS_DIR: oscal_tools
           SCHEMATRON_HOME: git-schematron
@@ -48,7 +48,7 @@ jobs:
           SAXON_VERSION: ${{ matrix.saxon }}
           JSON_CLI_VERSION: ${{ matrix.json-cli }}
           CICD_DIR: build/ci-cd
-          OSCAL_REPO_DIR: $GITHUB_WORKSPACE
+          OSCAL_REPO_DIR: "$GITHUB_WORKSPACE"
           OSCAL_BUILD_DIR: build-artifacts
           OSCAL_TOOLS_DIR: oscal_tools
           SCHEMATRON_HOME: git-schematron
@@ -63,7 +63,7 @@ jobs:
           SAXON_VERSION: ${{ matrix.saxon }}
           JSON_CLI_VERSION: ${{ matrix.json-cli }}
           CICD_DIR: build/ci-cd
-          OSCAL_REPO_DIR: $GITHUB_WORKSPACE
+          OSCAL_REPO_DIR: "$GITHUB_WORKSPACE"
           OSCAL_BUILD_DIR: build-artifacts
           OSCAL_TOOLS_DIR: oscal_tools
           SCHEMATRON_HOME: git-schematron
@@ -94,7 +94,7 @@ jobs:
           SAXON_VERSION: ${{ matrix.saxon }}
           JSON_CLI_VERSION: ${{ matrix.json-cli }}
           CICD_DIR: build/ci-cd
-          OSCAL_REPO_DIR: $GITHUB_WORKSPACE
+          OSCAL_REPO_DIR: "$GITHUB_WORKSPACE"
           OSCAL_BUILD_DIR: build-artifacts
           OSCAL_TOOLS_DIR: oscal_tools
           SCHEMATRON_HOME: git-schematron
@@ -481,13 +481,12 @@ jobs:
           SAXON_VERSION: ${{ matrix.saxon }}
           JSON_CLI_VERSION: ${{ matrix.json-cli }}
           CICD_DIR: build/ci-cd
-          OSCAL_REPO_DIR: $GITHUB_WORKSPACE
           OSCAL_BUILD_DIR: build-artifacts
           OSCAL_TOOLS_DIR: oscal_tools
           SCHEMATRON_HOME: git-schematron
           TERM: xterm
         run: |
-          cd "$OSCAL_REPO_DIR"
+          cd "$GITHUB_WORKSPACE"
           # Remove existing generated files
           git rm -r --ignore-unmatch xml/convert/*.xsl
           git rm -r --ignore-unmatch xml/schema/*.xsd
@@ -498,8 +497,8 @@ jobs:
           git rm -r --ignore-unmatch content/**/*.yaml
           # Copy new built files to repo
           cd -
-          cp -r "$OSCAL_BUILD_DIR"/* "$OSCAL_REPO_DIR"
-          cd "$OSCAL_REPO_DIR"
+          cp -r "$OSCAL_BUILD_DIR"/* "$GITHUB_WORKSPACE"
+          cd "$GITHUB_WORKSPACE"
           # add the new files
           git add -f --all xml
           git add -f --all json
